@@ -156,4 +156,11 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 
 		require $this->gabarit;
 	}
+
+	function a_detail()
+	{
+		$ch = new Chambre();
+		$data = $ch->select($_GET['id']);
+		require $this->gabarit;
+	}
 }

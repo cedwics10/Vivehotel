@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <td colspan="2">
-                <strong><?= mhe($data['cha_nom']) ?> (dans l'hôtel <?= $data['hot_nom'] ?>)</strong>
+                <strong>Chambre <?= mhe($data['cha_numero']) ?> (de l'hôtel "<?= $data['hot_nom'] ?>")</strong>
             </td>
         </tr>
     </thead>
@@ -26,18 +26,10 @@
             <td>Statut</td>
             <td><?= mhe($data['cha_statut']) ?></td>
         </tr>
-        <tr>
-            <td>Nombre de réservations de cette chambre</td>
-            <td><?= mhe($chambreActif) ?></td>
-        </tr>
-        <tr>
-            <td>Prendre une réservation</td>
-            <td><!-- Coder un tableau de réservation --></td>
-        </tr>
     </tbody>
 </table>
 
-<h2>Statistiques de l'hôtel "<?= mhe($data['hot_nom']) ?>"</h2>
+<h2>Statistiques de la chambre "<?= mhe($data['hot_nom']) ?>"</h2>
 
 
 <table class="table table-striped">
@@ -48,22 +40,10 @@
     </thead>
     <tbody>
         <tr>
-            <td>Chiffre d'affaire (hors services)</td>
-            <td><?= mhe($chiffreA) ?></td>
-        </tr>
-        <tr>
-            <td>Chiffre d'affaire des services</td>
-            <td><?= mhe($caSservices) ?></td>
-        </tr>
-        <tr>
-            <td>
-                <b>Chiffre d'affaire total</b>
-            </td>
-            <td>
-                <b><?= mhe($chiffreA + $caSservices) ?></b>
-            </td>
+            <td>Nombre de réservations déjà prises pour cette chambre</td>
+            <td>(?)</td>
         </tr>
     </tbody>
 </table>
 
-<a href="<?= hlien('hotel') ?>" class="btn btn-primary" type="button">Liste des hôtels</a>
+<a href="<?= hlien('chambre') ?>" class="btn btn-primary" type="button">Liste des chambres</a>

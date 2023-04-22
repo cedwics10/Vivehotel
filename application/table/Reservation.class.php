@@ -175,7 +175,7 @@ class Reservation extends Table
 		// Récupère l'ensemble des id doublons de notre réservation
 		// Cherche toutes les réservations qui se superpose à la réservation en édition
 		// dans le même hôtel, même chambre et stricteemnt différente de notre réservation
-		$sql = "SELECT 	res_id
+		$sql = "SELECT res_id
 		FROM reservation
 		WHERE ((:res_date_debut >= res_date_debut OR :res_date_fin >= res_date_debut)
 		AND (:res_date_debut <= res_date_fin OR :res_date_fin <= res_date_fin) )

@@ -12,7 +12,7 @@
     			<th>Catégorie</th>
     			<th>Type lits</th>
     			<th>Services</th>
-
+    			<th>Détails</th>
     			<th>Réservation</th>
     			<th>Modifier</th>
     			<th>supprimer</th>
@@ -38,7 +38,7 @@
     					<?= ($row['cha_coffre'] === 1 ? 'coffre<br />' : '') ?>
     					<?= ($row['cha_vue'] === 1 ? 'vue<br />' : '') ?>
     				</td>
-
+    				<td><a href="<?= hlien('chambre', 'detail', 'id', mhe($row['cha_id'])) ?>" class=" btn btn-secondary">Détail</a></td>
     				<td><a class="btn btn-info" href="<?= hlien("chambre", "reservations", "id", $row["cha_id"]) ?>">Réservation</td>
     				<td><a class="btn btn-warning" href="<?= hlien("chambre", "edit", "id", $row["cha_id"]) ?>">Modifier</a></td>
     				<td><a class="btn btn-danger" href="<?= hlien("chambre", "delete", "id", $row["cha_id"]) ?>">Supprimer</a></td>

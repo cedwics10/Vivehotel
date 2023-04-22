@@ -56,8 +56,9 @@ class Chambre extends Table
 
 	function select(int $id) // Sélectionne un enregistrement d'une chambre
 	{
-		$sql = 'SELECT * FROM chambre, hotel 
+		$sql = 'SELECT * FROM chambre, hotel, chcategorie
 		WHERE cha_hotel = hot_id
+		AND cha_chcategorie = chc_id
 		AND cha_id=:id';
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":id", $id, PDO::PARAM_INT);

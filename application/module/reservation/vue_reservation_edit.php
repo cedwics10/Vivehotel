@@ -1,7 +1,7 @@
 <h1>Modifier une réservation de "<?= $cli_nom ?>" dans la chambre <?= mhe($res_chambre) ?> de l'hôtel "<?= mhe($hot_nom) ?>"</h1>
 <form method="post" action="<?= hlien("reservation", "save") ?>">
     <input type="hidden" name="res_id" id="res_id" value="<?= $id ?>" />
-    <a class="btn btn-info" href="<?=hlien("reservation","index") ?>">Retour</a>
+    <a class="btn btn-info" href="<?= hlien("reservation", "index") ?>">Retour</a>
 
     <div class='form-group'>
         <label for='res_date_debut'>Date de debut</label>

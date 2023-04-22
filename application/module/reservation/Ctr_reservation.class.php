@@ -253,4 +253,14 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		}
 		header("location: " . hlien("reservation"));
 	}
+
+	function a_ajax_chotel()
+	{
+		checkAllow('admin');
+
+		$cha = new Chambre();
+		$listeChambresHotel = $cha->chaHotel($_GET['hotel']);
+
+		debug($listeChambresHotel);
+	}
 }
