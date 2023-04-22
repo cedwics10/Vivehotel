@@ -1,0 +1,56 @@
+* CHAMBRES
+- Faire en sorte que la modification du numéro de chambre soit cohérente
+
+* HÔTEL
+- Indiquer obligatoirement le nom de l'hôtel dans la liste des chambres 
+- Indiquer un bouton chambre pour l'hôtel 
+
+* RESERVATION
+- Editer le formulaire de création ou édition de réservations
+- Refaire fonctionner la création d'une réservation
+- Supprimer les services d'une réservation déjà commandés dans la liste 
+- Le texte "le prix du service a été mis à jour" apparaît deux fois dans la réservation 
+- Autoriser la modification d'une réservation si les nouvelles dates de celle-ci ne se superposent à elle-même.
+
+* STATISTIQUES
+- Modifier la requête du nombre de chambres libres actuellement
+
+* TARIF :
+- Modifier les balises pour que ce soit "data-XX" sinon c'est pas bien !
+- Avoir une fonction javascript H-lien (?)
+
+* HOT/CH CATEGORIE :
+- Peut-être pouvoir gérer les catégories d'hôtels et catégories de chambres (?)
+
+* DOSSIER TECHNIQUE :
+- Ajouter le numéro de page dans la table des matières du dossier technique
+- Modifier les captures d'écran du dossier technique
+----> Finir de rédiger le dossier technique [!!!]
+
+
+
+- Renommer le titre H1 des pages pour qu'elles soient descriptives [A,B,C]
+
+- Créer les pages des gestionnaires
+* possibilité de gérer les chambres de son hôtel
+* possibilité de gérer les réservations de son hôtel
+* possibilité de voir les statisituqes de son hôtel
+- Créer les pages des téléconseillers
+- Créer les pages des cleints
+
+- Tester le site intenret en entier
+- Commenter les actions des contrôleurs pour plus de clarté [C]
+- Supprimer les dossiers et fichiers qui n'ont aucun sens en tant que module MVC.
+- Mettre des commentaires automatique pour les classes et les fonctions
+
+* Non important non urgent :
+- Créer une classe qui permet de faire les formulaires interactifs pour les utilisaeturs du site [C]
+- Créer un GPS qui donne la latitude et longitude (optionnel, à voir en dernier) [?]
+- Créer un GPS sur le pied de page [C]
+- Créer une pagination sur le CRUD de la liste des clambres [C]
+
+Liste des tâches du document technique 
+- Faire la structure physique de l'application
+- Lister les paramètres de configuration de l'application
+- Indiquer la liste des variables globales
+- Lister les fonctions et les procédures

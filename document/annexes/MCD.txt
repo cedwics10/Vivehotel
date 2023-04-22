@@ -1,0 +1,100 @@
+<MCD>
+    <entités>
+*Client
+- id (AI)
+- nom (varchar(500))
+- identifiant (varchar(500))
+- mot_de_passe (varchar(500))
+- email (varchar(500))
+
+* Personnel
+- id (AI)
+- nom (varchar(500))
+- idenifiant (varchar(500))
+- mot_de_passe (varchar(500))
+- email (varchar(500))
+
+* Hotel
+- id (AI)
+- statut (int)
+- nom (varchar(500))
+- adresse (varchar(500))
+- departement (int)
+- description (text)
+- longitude (float)
+- latitude (float)
+
+*Chambre
+- id (int)
+- id_hotel (int)
+- numero (int)
+- statut (varchar(500))
+- surface (int)
+- type_lit_un (varchar(500))
+- type_lit_deux (varchar(500) or NULL)
+- description (text)
+- jacuzzi (bool)
+- balcon (bool)
+- wifi (bool)
+- minibar (bool)
+- coffre (bool)
+- vue (bool)
+
+*Service
+- id (AI)
+- nom (varchar(500))
+
+*ChCategorie
+- id(AI)
+- categorie_chambre (varchar(500))
+
+* HoCategorie
+- id (AI)
+- categorie_hotel (varchar(500))
+
+* Reservation
+- Id(AI)
+- date_creation (datetime)
+- date_debut (datetime)
+- date_maj (datetime)
+- date_fin (datetime)
+- etat (varchar(500))
+</entités>
+<association>
+Prendre
+- Client 1,n
+- Réservation 1,1
+
+Conclure
+- Reservation 1,1
+- Hotel 1,n
+
+Preciser
+- Chambre 1,n
+- Reservation 1,1
+
+Commander (quantité)
+- Service 1,n 
+- Reservation 1,n
+
+Travailler (role)
+- Personnel 0,1
+- Hotel 1,n
+
+Proposer (prix)
+- Hotel 0,n
+- service 0,n
+
+Tarifer (prix)
+- HoCategorie 1,n
+- ChCategorie 1,n
+
+HoAppartenir
+- hotel 1,1
+- HoCategorie 1,n
+
+ChAppartenir
+- Chambre 1,1
+- ChCategorie 1,n
+</association>
+</MCD>

@@ -1,0 +1,25 @@
+Afin de faire fonctionner le site, il faut créer une
+base de données avec un dataset.
+
+- 0. Démarrer XAMPP, Mysql, Apache
+- 1. Ouvrir un onglet "legum" sur son navigateur préféré
+- 2. Accéder au site internet "legum". Ne pas sélectionner
+de base de données ou  alors en sélectionner une qui est différente 
+de "vivehotel"
+- 3. Dans "Requêtes SQL", taper "DROP DATABASE vivehotel"
+- 4. Aller dans le sous-dossier "_dataset" du projet
+- 5. Ouvrir le fichier "vivehotel.sql"
+- 6. Faire "ctrl+A", "ctrl+C" du contenu de ce fichier
+- 7. Retourner dans "legum"
+- 8. Aller dans la section "Requêtes SQL"
+- 9. Ctrl+V du texte de création de la base de données dans le textarea et envoyer le texte 
+La base de données vide est créée
+- 10. Retourner dans le sous-dossier "_dataset" depuis le navigateur (avec XAMPP/Apache/Mysql en fonctionnement).
+- 10. Lancer le fichier "all.php" depuis le navigateur 
+La base de données contient le dataset, génération en moins de 6 secondes.
+
+Génération du CRUD :
+Pour assurer une meilleure sécurité, nous avons désactivé 
+les fonctionnalités de génération de CRUD et de dataset. 
+Nous avons supprimé le générateur de data.
+Cette copie de projet n'a pas de générateur de CRUD.
