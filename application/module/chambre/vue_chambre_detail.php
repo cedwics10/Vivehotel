@@ -41,7 +41,7 @@
     <tbody>
         <tr>
             <td>Nombre de réservations déjà prises pour cette chambre</td>
-            <td>(?)</td>
+            <td><?= intval($nbRes) ?></td>
         </tr>
     </tbody>
 </table>

@@ -195,4 +195,20 @@ class Reservation extends Table
 		$stmt->execute();
 		return count($stmt->fetchAll()) > 0 ? true : false;
 	}
+
+
+	/**
+	 * countRes
+	 *
+	 * @param  int $cha_id Primary key of a room
+	 * @return int Number of reservation of this room
+	 */
+	public function countRes(int $cha_iid)
+	{
+		$sql = 'SELECT COUNT(*) `nbRes` FROM reservation WHERE res_chambre = :cha_id';
+		$stmt = Table::$link->prepare($sql);
+		$stmt->bindValue(':cha_id', $cha_iid, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchColumn();
+	}
 }

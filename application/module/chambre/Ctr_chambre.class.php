@@ -161,6 +161,9 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	{
 		$ch = new Chambre();
 		$data = $ch->select($_GET['id']);
+
+		$res = new Reservation();
+		$nbRes = $res->countRes($_GET['id']);
 		require $this->gabarit;
 	}
 }
