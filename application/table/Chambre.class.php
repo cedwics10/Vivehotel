@@ -13,13 +13,7 @@ class Chambre extends Table
 		'1 lit double et un lit simple'
 	];
 
-	const CHA_STATUT = [
-		'Annnulé',
-		'Initialisé',
-		'Validé',
-		'En attente',
-		'Supprimé'
-	];
+	const CHA_STATUT = ['Actif', 'Supprimé', 'En travaux'];
 
 	const CRI_RECHERCHE = [
 		'Type lits' => 'cha_typeLit',

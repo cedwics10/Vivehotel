@@ -2,7 +2,7 @@
 // Chambres
 const NB_CHAMBRE_P_HOTEL = 10;
 
-const CHAMBRE_STATUTS = ['Actif','Libre'];
+const CHAMBRE_STATUTS = ['Actif', 'Supprimé', 'En travaux'];
 
 const TYPE_LITS = [
     '2 Lits simples',
@@ -29,7 +29,7 @@ const NOMBRE_COMMANDES = 1500;
 
 // Hôtel
 const NOMBRE_HOTEL = 50;
-const HOTEL_STATUT = ['Initialisé', 'En attente', 'Validé', 'Annnulé'];
+const HOTEL_STATUT = ['Actif', 'Supprimé', 'En travaux'];
 
 // Hôtel (catégories)
 const HOTEL_CATEGORIE = [

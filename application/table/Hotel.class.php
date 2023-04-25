@@ -6,13 +6,8 @@ Classe créé par le générateur.
 
 class Hotel extends Table
 {
-	const STATUT = [
-		"En attente",
-		"Initialisé",
-		"Annnulé",
-		"Validé",
-		"Supprimé"
-	];
+	const STATUT = ['Actif', 'Supprimé', 'En travaux'];
+
 	public function __construct()
 	{
 		parent::__construct("hotel", "hot_id");
@@ -150,18 +145,19 @@ class Hotel extends Table
 	 */
 	public function ChambreActifs(int $id): array
 	{
-		$sql = "SELECT hot_id, hot_nom, COUNT(DISTINCT(cha_id)) `nb_chambres`
+		$sql = "SELECT COUNT(DISTINCT(cha_id)) `nb_chambres`
 		FROM hotel, reservation, chambre
 		WHERE res_hotel = hot_id
 		AND res_chambre = cha_id
-		AND cha_statut = 'Validé'
+		AND res_etat = 'Validé'
 		AND hot_id = :id
 		GROUP BY hot_id
 		ORDER BY nb_chambres";
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+
+		return is_array($stmt->fetch()) ? $stmt->fetch()['nb_chambres'] : 0;
 	}
 
 

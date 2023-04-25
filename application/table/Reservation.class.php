@@ -207,7 +207,8 @@ class Reservation extends Table
 	{
 		$sql = 'SELECT COUNT(*) `nbRes` 
 		FROM reservation 
-		WHERE res_chambre = :cha_id';
+		WHERE res_chambre = :cha_id
+		AND (res_etat = "Validé")';
 		$stmt = Table::$link->prepare($sql);
 		$stmt->bindValue(':cha_id', $cha_iid, PDO::PARAM_INT);
 		$stmt->execute();
