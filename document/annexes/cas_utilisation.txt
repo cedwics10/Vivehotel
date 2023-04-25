@@ -2,7 +2,6 @@
 - Faire en sorte que la modification du numéro de chambre soit cohérente
 
 * HÔTEL
-- Indiquer obligatoirement le nom de l'hôtel dans la liste des chambres 
 - Indiquer un bouton chambre pour l'hôtel 
 
 * RESERVATION

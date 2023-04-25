@@ -205,7 +205,9 @@ class Reservation extends Table
 	 */
 	public function countRes(int $cha_iid)
 	{
-		$sql = 'SELECT COUNT(*) `nbRes` FROM reservation WHERE res_chambre = :cha_id';
+		$sql = 'SELECT COUNT(*) `nbRes` 
+		FROM reservation 
+		WHERE res_chambre = :cha_id';
 		$stmt = Table::$link->prepare($sql);
 		$stmt->bindValue(':cha_id', $cha_iid, PDO::PARAM_INT);
 		$stmt->execute();
