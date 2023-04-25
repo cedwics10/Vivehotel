@@ -143,7 +143,7 @@ class Hotel extends Table
 	 * @param int $id : clé primaire d'un enregistrement de la table "Hôtel"
 	 * @return array Retourne l'ensemble des chambres actives de l'hôtel $id
 	 */
-	public function ChambreActifs(int $id): array
+	public function ChambreActifs(int $id): int
 	{
 		$sql = "SELECT COUNT(DISTINCT(cha_id)) `nb_chambres`
 		FROM hotel, reservation, chambre
@@ -153,11 +153,13 @@ class Hotel extends Table
 		AND hot_id = :id
 		GROUP BY hot_id
 		ORDER BY nb_chambres";
+
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
 
-		return is_array($stmt->fetch()) ? $stmt->fetch()['nb_chambres'] : 0;
+		$res = $stmt->fetch();
+		return is_array($res) ? $res['nb_chambres'] : 0;
 	}
 
 
