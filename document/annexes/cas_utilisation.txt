@@ -21,7 +21,6 @@ celle-ci ne se superposent à elle-même.
 - Peut-être pouvoir gérer les catégories d'hôtels et catégories de chambres (?)
 
 * DOSSIER TECHNIQUE :
-- Ajouter le numéro de page dans la table des matières du dossier technique
 - Modifier les captures d'écran du dossier technique
 ----> Finir de rédiger le dossier technique [!!!]
 
