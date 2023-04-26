@@ -15,8 +15,7 @@ celle-ci ne se superposent à elle-même.
 - Modifier la requête du nombre de chambres libres actuellement
 
 * TARIF :
-- Modifier les balises pour que ce soit "data-XX" sinon c'est pas bien !
-- Avoir une fonction javascript H-lien (?)
+- Avoir une fonction javascript H-lien
 
 * HOT/CH CATEGORIE :
 - Peut-être pouvoir gérer les catégories d'hôtels et catégories de chambres (?)
