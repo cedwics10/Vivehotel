@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <td colspan="2">
-                <strong><?= mhe($data['hot_nom']) ?> (dans le <?= $data['hot_departement'] ?>)</strong>
+                <strong><?= mhe($data['hot_nom']) ?> dans le <?= $data['hot_departement'] ?></strong>
             </td>
         </tr>
     </thead>
