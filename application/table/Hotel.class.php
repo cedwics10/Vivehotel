@@ -102,9 +102,9 @@ class Hotel extends Table
 	 * @param int $id : clé primaire d'un enregistrement de la table hôtel
 	 * @return int Retourne le chiffre d'affaires hors services d'un hôtel de la compagnie Vivehotel
 	 */
-	public function chiffreAffaire(int $id): array
+	public function chiffreAffaire(int $id): int
 	{
-		$sql = 'SELECT hot_id, SUM(tar_prix* res_duree) `c_affaire` FROM
+		$sql = 'SELECT SUM(tar_prix* res_duree) `c_affaire` FROM
 		(SELECT hot_id, tar_prix, DATEDIFF(res_date_fin, res_date_debut) `res_duree`
 		FROM chambre, reservation, tarifer, hotel
 		WHERE res_chambre = cha_id
@@ -116,7 +116,7 @@ class Hotel extends Table
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetchColumn();
 	}
 
 
@@ -124,9 +124,9 @@ class Hotel extends Table
 	 * @param int $id : clé primaire d'un enregistrement de la table hôtel
 	 * @return int Retourne le chiffre d'affaires des services d'un hôtel de la compagnie Vivehotel
 	 */
-	public function CAservices(int $hot_id): array
+	public function CAservices(int $hot_id): int
 	{
-		$sql = 'SELECT pro_hotel, SUM(pro_prix*com_quantite) `ca_service`
+		$sql = 'SELECT SUM(pro_prix*com_quantite) `ca_service`
 		FROM commander, services, proposer
 		WHERE com_services = ser_id 
 		AND ser_id = pro_services
@@ -136,14 +136,14 @@ class Hotel extends Table
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $hot_id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetchColumn();
 	}
 
 	/**
 	 * @param int $id : clé primaire d'un enregistrement de la table "Hôtel"
 	 * @return array Retourne l'ensemble des chambres actives de l'hôtel $id
 	 */
-	public function ChambreActifs(int $id): int
+	public function ChambreActives(int $id): int
 	{
 		$sql = "SELECT COUNT(DISTINCT(cha_id)) `nb_chambres`
 		FROM hotel, reservation, chambre
@@ -158,8 +158,7 @@ class Hotel extends Table
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
 
-		$res = $stmt->fetch();
-		return is_array($res) ? $res['nb_chambres'] : 0;
+		return $stmt->fetchColumn();
 	}
 
 
@@ -167,9 +166,9 @@ class Hotel extends Table
 	 * @param int $id : clé primaire d'un enregistrement de la table "Hôtel"
 	 * @return array Retourne l'ensemble des chambres actives de l'hôtel $id
 	 */
-	public function ChambreLibres(int $id): array
+	public function ChambreLibres(int $id): int
 	{
-		$sql = "SELECT hot_id, hot_nom, COUNT(DISTINCT(cha_id)) 'nb_chambreLibres', cha_numero, res_hotel
+		$sql = "SELECT COUNT(DISTINCT(cha_id)) 'nb_chambreLibres'
 		FROM hotel, reservation, chambre
 		WHERE res_hotel = hot_id
 		AND res_chambre = cha_id
@@ -177,12 +176,12 @@ class Hotel extends Table
 		AND res_date_fin < '2021-03-01'
 		AND res_etat = 'En attente'
 		AND hot_id = :id
-		GROUP BY hot_id
-		ORDER BY nb_chambreLibres";
+		GROUP BY hot_id";
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+
+		return $stmt->fetchColumn();
 	}
 
 
