@@ -1,3 +1,7 @@
+* ALL
+- Mettre des commentaires automatique pour les classes et les fonctions
+- Lister les fonctions et les procédures
+
 * CHAMBRES
 - Faire en sorte que la modification du numéro de chambre soit cohérente
 
@@ -25,31 +29,30 @@ celle-ci ne se superposent à elle-même.
 ----> Finir de rédiger le dossier technique [!!!]
 
 
-
 - Renommer le titre H1 des pages pour qu'elles soient descriptives [A,B,C]
 
-- Créer les pages des gestionnaires
+
+- GESTIONNAIRE
 * possibilité de gérer les chambres de son hôtel
 * possibilité de gérer les réservations de son hôtel
 * possibilité de voir les statisituqes de son hôtel
+
+- TELECONSEILLERS
 - Créer les pages des téléconseillers
+
+- CLIENTS
 - Créer les pages des cleints
 
 - Tester le site intenret en entier
-- Commenter les actions des contrôleurs pour plus de clarté [C]
+- Commenter les actions des contrôleurs pour plus de clarté 
 - Supprimer les dossiers et fichiers qui n'ont aucun sens en tant que module MVC.
-- Mettre des commentaires automatique pour les classes et les fonctions
 
-* Non important non urgent :
+
+* important non urgent :
 - Créer une classe qui permet de faire les formulaires interactifs pour
-les utilisaeturs du site [C]
+les utilisaeturs du site
 - Créer un GPS qui donne la latitude et longitude (optionnel, à voir en
 dernier) [?]
 - Créer un GPS sur le pied de page [C]
 - Créer une pagination sur le CRUD de la liste des clambres [C]
 
-Liste des tâches du document technique 
-- Faire la structure physique de l'application
-- Lister les paramètres de configuration de l'application
-- Indiquer la liste des variables globales
-- Lister les fonctions et les procédures
