@@ -46,7 +46,7 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	/**
 	 * a_hotel
 	 *
-	 * @return void Page de la liste des hôtels d'une chambre
+	 * @return void Page de la liste des chambres d'un hôtel
 	 */
 	function a_hotel()
 	{

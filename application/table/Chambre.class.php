@@ -63,15 +63,15 @@ class Chambre extends Table
 	// Sélectionne tous les enregistrement des chambres d'un hôtel
 	function chaHotel(int $id)
 	{
-		$sql = "SELECT cha_id, cha_numero, 
+		$sql = "SELECT cha_id, cha_numero, cha_hotel, 
 		cha_statut, cha_surface, cha_typeLit,  cha_description, cha_jacuzzi,
 		cha_balcon, cha_wifi, cha_minibar, cha_coffre,
 		cha_vue, chc_categorie, cha_hotel 
 		FROM chambre, chcategorie, hotel 
 		WHERE cha_chcategorie = chc_id 
+		AND cha_hotel = :id
 		AND cha_hotel = hot_id
-		AND hot_id = :id
-		ORDER BY cha_id";
+		ORDER BY CAST(cha_numero AS int) ASC";
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":id", $id, PDO::PARAM_INT);
 		$statement->execute();
@@ -98,7 +98,7 @@ class Chambre extends Table
 	}
 
 	// Liste déroulante de toutes les chambres de tous les hôtels
-	static public function OPTIONChambre(int $idChambre)
+	static public function OPTIONChambre(string $idChambre)
 	{
 		return self::HTMLoptions('SELECT cha_id, cha_numero FROM chambre', 'cha_id', 'cha_numero', $idChambre);
 	}

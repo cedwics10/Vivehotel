@@ -23,8 +23,7 @@
         </select>
     </div>
     <div class='form-group'>
-        <label for='cha_surface'>Surface</label>
-        <input id='cha_surface' name='cha_surface' type='number' size='50' value='<?= mhe($cha_surface) ?>' class='form-control' />
+        <label for='cha_surface'>Surface</label> : <?= mhe($cha_surface) ?>m²
     </div>
     <div class='form-group'>
         <label for='cha_typeLit'>Type lits</label>

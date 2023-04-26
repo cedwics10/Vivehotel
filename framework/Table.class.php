@@ -55,9 +55,11 @@ class Table
 	function emptyRecord(): array
 	{
 		$fields = $this->getFields();
+
+
 		$row = [];
 		foreach ($fields as $name)
-			$row[$name] = "";
+			$row[$name] = '';
 		$row[$this->pk] = 0;
 		return $row;
 	}
@@ -72,6 +74,7 @@ class Table
 		$fields = [];
 		$sql = "show columns from $this->table";
 		$result = self::$link->query($sql);
+
 		foreach ($result as $row)
 			$fields[] = $row["Field"];
 

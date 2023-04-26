@@ -189,7 +189,7 @@ class Hotel extends Table
 	 * @param string $select : clé étrangère d'un enregistrement de la table "Hôtel"
 	 * @return string $HTML : retourne la liste deéroulante de l'ensemble des hôtels
 	 */
-	static public function OPTIONhotel(int $selected)
+	static public function OPTIONhotel(string $selected)
 	{
 		return Table::HTMLoptions('SELECT * FROM hotel', 'hot_id', 'hot_nom', $selected);
 	}

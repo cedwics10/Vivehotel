@@ -1,9 +1,12 @@
 * ALL
-- Mettre des commentaires automatique pour les classes et les fonctions
+- Mettre des commentaires automatiques pour les classes et les fonctions
 - Lister les fonctions et les procédures
+- Utiliser le code pour les tableaux responsifs
 
 * CHAMBRES
-- Faire en sorte que la modification du numéro de chambre soit cohérente
+- Supprimer la possibiltié de modifier le numéro de la chambre
+- Créer une modification libre du numéro de chambre, avec l'impossibilité
+de nommer la chambre comme une autre chambre qui existait déjà.
 
 * HÔTEL
 - Indiquer un bouton chambre pour l'hôtel 
@@ -11,7 +14,7 @@
 * RESERVATION
 - Editer le formulaire de création ou édition de réservations
 - Refaire fonctionner la création d'une réservation
-- Supprimer les services d'une réservation déjà commandées dans la liste 
+- Supprimer les services d'une réservation déjà commandée dans la liste 
 - Autoriser la modification d'une réservation si les nouvelles dates de
 celle-ci ne se superposent à elle-même.
 
@@ -21,13 +24,8 @@ celle-ci ne se superposent à elle-même.
 * TARIF :
 - Avoir une fonction javascript H-lien
 
-* HOT/CH CATEGORIE :
-- Peut-être pouvoir gérer les catégories d'hôtels et catégories de chambres (?)
-
 * DOSSIER TECHNIQUE :
-- Modifier les captures d'écran du dossier technique
-----> Finir de rédiger le dossier technique [!!!]
-
+- Relire le dossier technique et le mettre à jour
 
 - Renommer le titre H1 des pages pour qu'elles soient descriptives [A,B,C]
 
