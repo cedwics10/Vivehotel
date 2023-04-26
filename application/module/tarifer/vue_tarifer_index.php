@@ -27,7 +27,7 @@
 				foreach ($chCategorie as $numChc => $nomChc) {
 					$prix = $grilleTarifaire[$numHoc][$numChc];
 				?>
-					<td class="tarif" numchc="<?= ($numChc + 1) ?>" numhoc="<?= ($numHoc + 1); ?>" contenteditable="true"><?= $prix ?></td>
+					<td class="tarif" data-chc="<?= ($numChc + 1) ?>" data-hoc="<?= ($numHoc + 1); ?>" contenteditable="true"><?= $prix ?></td>
 				<?php } ?>
 			</tr>
 		<?php } ?>

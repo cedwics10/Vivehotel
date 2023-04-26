@@ -4,13 +4,15 @@ include('../../framework/fonction.php');
 ?>
 
 boutonssSuppr = document.body.getElementsByClassName('btn-danger');
-tdEditablesTarifs = document.body.getElementsByClassName('tarif');
 
 Array.prototype.forEach.call(boutonssSuppr,
 function (item) {
 item.addEventListener('click', (e) => confSuppr(e))
 }
 )
+
+/* Editable tarifs */
+tdEditablesTarifs = document.body.getElementsByClassName('tarif');
 
 Array.prototype.forEach.call(tdEditablesTarifs,
 function (item) {
@@ -28,8 +30,7 @@ e.preventDefault();
 async function infoTarif(e) {
 
 let tarPrix = e.target.innerHTML;
-let tarHoCategorie = e.target.getAttribute('numhoc');
-let tarChCategorie = e.target.getAttribute('numchc');
+const {hoc,chc} = e.target;
 
 editTar(tarHoCategorie, tarChCategorie, tarPrix);
 
@@ -44,8 +45,8 @@ headers: {
 mode: "cors",
 credentials: "same-origin",
 body: JSON.stringify({
-tar_hocategorie: hoc,
-tar_chcategorie: chc,
+hoc: hoc,
+chc: chc,
 tar_prix: tarprix
 })
 };

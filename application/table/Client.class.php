@@ -17,7 +17,7 @@ class Client extends Table
 	 * @param int $id : identifiant de la catégorie de chambre à sélectionner par défaut
 	 * @return string : texte HTML d'une liste déroulante de catégories de chambres
 	 */
-	static public function OPTIONclients(int $idClient)
+	static public function OPTIONclients(int|string $idClient)
 	{
 		return self::HTMLoptions('SELECT cli_id, cli_nom FROM client', 'cli_id', 'cli_nom', $idClient);
 	}

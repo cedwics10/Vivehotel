@@ -7,7 +7,7 @@
 * RESERVATION
 - Editer le formulaire de création ou édition de réservations
 - Refaire fonctionner la création d'une réservation
-- Supprimer les services d'une réservation déjà commandés dans la liste 
+- Supprimer les services d'une réservation déjà commandées dans la liste 
 - Autoriser la modification d'une réservation si les nouvelles dates de
 celle-ci ne se superposent à elle-même.
 

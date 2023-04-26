@@ -57,6 +57,7 @@ class Ctr_tarifer extends Ctr_controleur implements I_crud
 	function a_ajax()
 	{
 		checkAllow('admin');
+
 		$tarif = new Tarifer();
 
 		// Vérifier si l'utilsiateur est administrateur
@@ -65,11 +66,11 @@ class Ctr_tarifer extends Ctr_controleur implements I_crud
 		$reponseArray = array_map('trim', json_decode($reponseJSON, true));
 
 		$infosPrix = $tarif->selectPrix(
-			$reponseArray['tar_hocategorie'],
-			$reponseArray['tar_chcategorie']
+			$reponseArray['hoc'],
+			$reponseArray['chc']
 		);
 
-		$infosPrix['tar_prix'] = $reponseArray['tar_prix'];
+		$infosPrix['tar_prix'] = $reponseArray['tarPrix'];
 		$tarif->save($infosPrix);
 	}
 

@@ -214,4 +214,22 @@ class Reservation extends Table
 		$stmt->execute();
 		return $stmt->fetchColumn();
 	}
+
+	/**
+	 * retourne un tableau contenant le nom des champs de la table
+	 *
+	 * @return array
+	 */
+	function getFields(): array
+	{
+		$fields = [];
+		$sql = "SELECT column_name 
+		FROM `information_schema`.`columns` 
+		WHERE `table_schema` = 'vivehotel' and `table_name` in ('hotel', 'chcategorie', 'chambre', 'reservation')";
+		$result = self::$link->query($sql);
+		foreach ($result as $row)
+			$fields[] = $row["column_name"];
+
+		return $fields;
+	}
 }
