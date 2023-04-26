@@ -1,8 +1,8 @@
 <div class='form-group'>
     <h1>
-        <label>Modification de la chambre "<?= mhe($cha_numero) ?>" de l'hôtel "<?= $hot_nom ?>"</label>
+        <label>Modification de la chambre "<?= mhe($cha_numero) ?>" de l'hôtel "<?= mhe($hot_nom) ?>"</label>
     </h1>
-    <a class="btn btn-secondary" href="<?= hlien('chambre', 'index') ?>">Liste des chambres</a>
+    <a class="btn btn-secondary" href="<?= hlien('chambre', 'hotel', 'id', $cha_id) ?>">Liste des chambres</a>
 </div>
 
 <form method="post" action="<?= hlien("chambre", "save") ?>">
