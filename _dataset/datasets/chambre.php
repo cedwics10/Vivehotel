@@ -30,9 +30,6 @@ for ($cha_hotel = 1; $cha_hotel <= NOMBRE_HOTEL; $cha_hotel++) {
         '$cha_description','$cha_jacuzzi','$cha_balcon','$cha_wifi',
         '$cha_minibar','$cha_coffre','$cha_vue',
 		'$cha_chcategorie','$cha_hotel')";
-
-        print($cha_hotel . ',' . $cha_numero . PHP_EOL);
-
         $idChambre++;
     }
 }
