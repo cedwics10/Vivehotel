@@ -74,7 +74,7 @@ class Services extends Table
 	{
 		$sql = "SELECT ser_id, ser_nom 
 		FROM services 
-		WHERE ser_id NOT IN (SELECT pro_id
+		WHERE ser_id NOT IN (SELECT pro_services
 		FROM proposer
 		WHERE pro_hotel = $hot_id)";
 

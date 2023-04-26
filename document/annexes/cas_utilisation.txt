@@ -4,22 +4,15 @@
 - Utiliser le code pour les tableaux responsifs
 
 * CHAMBRES
-- Supprimer la possibiltié de modifier le numéro de la chambre
 - Créer une modification libre du numéro de chambre, avec l'impossibilité
 de nommer la chambre comme une autre chambre qui existait déjà.
 
-* HÔTEL
-- Indiquer un bouton chambre pour l'hôtel 
 
 * RESERVATION
 - Editer le formulaire de création ou édition de réservations
 - Refaire fonctionner la création d'une réservation
-- Supprimer les services d'une réservation déjà commandée dans la liste 
 - Autoriser la modification d'une réservation si les nouvelles dates de
 celle-ci ne se superposent à elle-même.
-
-* STATISTIQUES
-- Modifier la requête du nombre de chambres libres actuellement
 
 * TARIF :
 - Avoir une fonction javascript H-lien
@@ -41,7 +34,8 @@ celle-ci ne se superposent à elle-même.
 - CLIENTS
 - Créer les pages des cleints
 
-- Tester le site intenret en entier
+
+- Tester le site intenret en entier (tests unitaires et interface)
 - Commenter les actions des contrôleurs pour plus de clarté 
 - Supprimer les dossiers et fichiers qui n'ont aucun sens en tant que module MVC.
 
