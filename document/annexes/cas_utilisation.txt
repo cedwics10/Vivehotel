@@ -3,13 +3,7 @@
 - Lister les fonctions et les procédures
 - Utiliser le code pour les tableaux responsifs
 
-* CHAMBRES
-- Créer une modification libre du numéro de chambre, avec l'impossibilité
-de nommer la chambre comme une autre chambre qui existait déjà.
-
-
 * RESERVATION
-
 -> Editer le formulaire de création ou édition de réservations
 - Créer un appel ajax pour trouver la chambre en fonction de l'hôtel
 - Refaire fonctionner la création d'une réservation
