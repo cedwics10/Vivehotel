@@ -104,7 +104,7 @@ class Hotel extends Table
 	 */
 	public function chiffreAffaire(int $id): int
 	{
-		$sql = 'SELECT SUM(tar_prix* res_duree) `c_affaire` FROM
+		$sql = 'SELECT SUM(tar_prix*res_duree) `c_affaire` FROM
 		(SELECT hot_id, tar_prix, DATEDIFF(res_date_fin, res_date_debut) `res_duree`
 		FROM chambre, reservation, tarifer, hotel
 		WHERE res_chambre = cha_id
@@ -182,6 +182,28 @@ class Hotel extends Table
 		$stmt->execute();
 
 		return $stmt->fetchColumn();
+	}
+
+	/**
+	 * @param string $select : clé étrangère d'un enregistrement de la table "Hôtel"
+	 * @return bool : indique si le numéro de chambre n'a pas été déjà pris dans l'hôtel 
+	 */
+	static public function NumeroIndisponible(string $cha_numero, int $cha_hotel, int $not_cha_id)
+	{
+		$sql = 'SELECT cha_id FROM chambre
+		WHERE cha_numero = :cha_numero
+		AND cha_hotel = :id_hotel
+		AND cha_id != :notchaid
+		';
+
+		$stmt = Table::$link->prepare($sql);
+		$stmt->bindValue(':cha_numero', $cha_numero, PDO::PARAM_STR);
+		$stmt->bindValue(':id_hotel', $cha_hotel, PDO::PARAM_INT);
+		$stmt->bindValue(':notchaid', $not_cha_id, PDO::PARAM_INT);
+
+		$stmt->execute();
+		$res = $stmt->fetchAll();
+		return (count($res) > 0) ? true : false;
 	}
 
 

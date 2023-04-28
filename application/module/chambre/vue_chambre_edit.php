@@ -65,6 +65,12 @@
         </select>
     </div>
 
+    <div class='form-group'>
+        <label for='cha_description'>Numéro</label><br />
+        <input type="text" id='cha_description' name='cha_numero' rows='5' class='form-control' value="<?= mhe($cha_numero) ?>">
+    </div>
+
+
     <input class="btn btn-success" type="submit" name="btSubmit" value="Enregistrer" />
 </form>
 </div>

@@ -47,8 +47,14 @@ class Chambre extends Table
 		$result = self::$link->query($sql);
 		return $result->fetchAll();
 	}
-
-	function select(int $id) // Sélectionne un enregistrement d'une chambre
+	
+	/**
+	 * select
+	 *
+	 * @param  mixed $id
+	 * @return void
+	 */
+	function select(int $id) 
 	{
 		$sql = 'SELECT * FROM chambre, hotel, chcategorie
 		WHERE cha_hotel = hot_id

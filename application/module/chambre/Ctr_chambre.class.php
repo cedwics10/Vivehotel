@@ -95,21 +95,32 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_save()
 	{
+
+		$u = new Chambre();
 		checkAllow('admin');
+
 		if (isset($_POST["btSubmit"])) {
-			if (!in_array($_POST['cha_statut'], Chambre::CHA_STATUT)) {
-				$_SESSION["message"][] = "Statut de la chambre non valide.";
-				header("location:" . hlien("chambre"));
+			$dataRoom = $u->select($_POST['cha_id']);
+
+			if ($dataRoom === false) {
+				$_SESSION['message'][] = "La chambre n'existe pas";
+				header('Location: ' . hlien('chambre'));
+				exit();
 			}
 
-			$u = new Chambre();
+			if (Hotel::NumeroIndisponible($_POST['cha_numero'], $dataRoom['cha_hotel'], $_POST['cha_id'])) {
+				$_SESSION['message'][] = 'Le numéro de chambre a déjà été rpis';
+				header('Location: ' . hlien('chambre', 'edit', 'id', $_POST['cha_id']));
+				exit();
+			}
 
 			$u->save($_POST);
-			$_SESSION["message"][] = ($_POST["cha_id"] == 0) ?  "Le nouvel enregistrement " .
-				"Chambre a bien été créé." :  "L'enregistrement Chambre a bien été mis à jour.";
+			$_SESSION["message"][] = ($_POST["cha_id"] == 0)
+				?  "Le nouvel enregistrement chambre a bien été créé."
+				:  "L'enregistrement Chambre a bien été mis à jour.";
 		}
 
-		header("location:" . hlien("chambre"));
+		header('Location: ' . hlien('chambre', 'edit', 'id', $_POST['cha_id']));
 	}
 
 
