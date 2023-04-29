@@ -1,7 +1,7 @@
 - GESTIONNAIRE
-* Possibilité de gérer les chambres de son hôtel
-* Possibilité de gérer les réservations de son hôtel
 * Possibilité de voir les statistiques de son hôtel
+* Possibilité de gérer les réservations de son hôtel
+* Possibilité de gérer les chambres de son hôtel
 
 - TELECONSEILLERS
 - Consulter les disponibilités des chambres pour tout hôtel,
