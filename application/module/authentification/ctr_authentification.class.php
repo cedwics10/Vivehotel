@@ -105,7 +105,8 @@ class Ctr_authentification extends Ctr_controleur
             $_SESSION["cli_identifiant"] = $cli_identifiant;
             $_SESSION["cli_email"] = $cli_email;
             $_SESSION["cli_profil"] = $cli_profil;
-            $_SESSION["message"][] = "bienvenu $cli_identifiant $cli_nom.";
+            $_SESSION["per_profil"] = 'client';
+            $_SESSION["message"][] = "Bienvenu $cli_identifiant $cli_nom.";
             header("location:" . hlien("_default"));
         } else {
             $cli_email = "";

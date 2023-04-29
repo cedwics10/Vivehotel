@@ -21,7 +21,16 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_index()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
+
+		if (
+			isset($_SESION['per_role'])
+			and $_SESSION['per_role'] == 'gestionnaire'
+		) {
+			header('Location: ' . hlien('gesstionnaire', 'hotel'));
+			exit();
+		}
+
 		$u = new Reservation();
 		$data = $u->selectAll();
 		require $this->gabarit;
@@ -59,7 +68,8 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_edit()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
+
 		$id = isset($_GET["id"]) ? $_GET["id"] : 0;
 		$u = new Reservation();
 		$res_commandes = [];
@@ -71,6 +81,14 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		}
 
 		extract($row);
+
+		if (
+			$_SESSION["per_role"] == 'gestionnaire'
+			and $_SESSION['per_hotel'] != $res_hotel
+		) {
+			header('Location: ' . hlien('gestionnaire', 'hotel'));
+			exit();
+		}
 		require $this->gabarit;
 	}
 
@@ -81,12 +99,22 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_save()
 	{
-		checkallow('admin');
-		if (!isset($_POST["btSubmit"])) exit();
-
 		$u = new Reservation();
-		$aDoublons = $u->aDoublons($_POST);
+		$resInfo = $u->select($_POST['res_id']);
 
+		checkallow(['admin', 'gestionnaire']);
+
+		if (
+			$_SESSION["per_role"] == 'gestionnaire'
+			and $_SESSION['per_hotel'] != $resInfo['res_hotel']
+		) {
+			header('Location: ' . hlien('gestionnaire', 'hotel'));
+			exit();
+		}
+
+
+		$aDoublons = $u->aDoublons($_POST);
+		// Réécrire cette condition (?)
 		if ($aDoublons and $_POST['res_etat'] == '') {
 			$_SESSION["message"][] = "La chambre n'est pas libre entre ces deux dates : "
 				. "la réservation n'a pas été modifiée";
@@ -167,8 +195,19 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
+
 		$reservation = new Reservation();
+		$dataRes = $reservation->select($_GET['id']);
+		extract($dataRes);
+
+		if (
+			$_SESSION["per_role"] == 'gestionnaire'
+			and $_SESSION['per_hotel'] != $res_hotel
+		) {
+			header('Location: ' . hlien('gestionnaire', 'hotel'));
+			exit();
+		}
 
 		$data = $reservation->reservationServices($_GET['id']);
 

@@ -93,18 +93,26 @@ function checkAuth()
 }
 
 //si user non authentifié redirection vers index
-function checkAllow($profil)
+function checkAllow(string|array $profil)
 {
 	checkAuth();
 
-	$checkClientFailed  = $profil == 'client' and !isset($_SESSION["cli_id"]);
+	if (is_string($profil)) {
+		$profil = [$profil];
+	}
+
+	/* DISJONCTION :
+	Si client est dans la liste : il faut que la vérif fail
+	Si client n'est pas dans la liste : il faut que la vérif réussisse
+	*/
+	$checkClientFaled  = !in_array('client', $profil) or isset($_SESSION["cli_id"]);
 	if (
-		(isset($_SESSION["per_role"]) and $_SESSION['per_role'] != $profil)
-		or $checkClientFailed
+		isset($_SESSION["per_role"])
+		and !in_array($_SESSION['per_role'], $profil)
 	) {
 		$_SESSION["message"][] = "Cette page n'existe pas.";
 		header("location:" . hlien("_default"));
-		exit;
+		exit();
 	}
 }
 

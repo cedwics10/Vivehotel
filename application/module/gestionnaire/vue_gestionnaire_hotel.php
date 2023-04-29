@@ -7,12 +7,13 @@
     			<th>Hotel</th>
     			<th>Chambre</th>
     			<th>Client</th>
+    			<!-- <th>Date creation</th> -->
     			<th>Date debut</th>
     			<th>Date fin</th>
     			<th>Etat</th>
     			<th>Services</th>
-    			<th>Modifier</th>
-    			<th>Supprimer</th>
+    			<th>modifier</th>
+    			<th>supprimer</th>
     		</tr>
     	</thead>
     	<tbody>
