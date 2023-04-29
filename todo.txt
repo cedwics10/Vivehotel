@@ -1,3 +1,1 @@
-- Revoir le script du "dataset"
-- Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
-- cha type lit
+

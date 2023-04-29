@@ -1,4 +1,9 @@
+
+
 * ALL
+- Revoir le script du "dataset"
+- Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
+- cha type lit
 - Renommer le titre H1 des pages pour qu'elles soient descriptives
 - Mettre des commentaires automatiques pour les classes et les fonctions
 - Lister les fonctions et les procédures
