@@ -164,6 +164,30 @@ class Reservation extends Table
 	}
 
 	/**
+	 * reservationServices
+	 *
+	 * @param  int $res_id Clé primaire d'un enregistrement de la table "réservation"
+	 * @return array ensemble des enregistrements de services que la réservation a prises
+	 */
+	public function countDoubleSer(int $resId, int $comService): array
+	{
+		$sql = 'SELECT COUNT(com_id) `nbServices`
+		FROM commander
+		WHERE com_services = ser_id
+		AND com_reservation = :idres
+		AND com_service = :comser';
+
+		$stmt = self::$link->prepare($sql);
+
+		$stmt->bindValue(':idres', $resId, PDO::PARAM_INT);
+		$stmt->bindValue(':comser', $comService, PDO::PARAM_INT);
+
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+	}
+
+	/**
 	 * aDoublons
 	 *
 	 * @param  array $data Tableau associatif qui est l'entrée d'une réservation

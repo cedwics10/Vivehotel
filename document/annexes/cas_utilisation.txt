@@ -1,15 +1,15 @@
 * ALL
+- Renommer le titre H1 des pages pour qu'elles soient descriptives
 - Mettre des commentaires automatiques pour les classes et les fonctions
 - Lister les fonctions et les procédures
 - Utiliser le code pour les tableaux responsifs
 
 * RESERVATION
--> Editer le formulaire de création ou édition de réservations
-- Créer un appel ajax pour trouver la chambre en fonction de l'hôtel
-- Refaire fonctionner la création d'une réservation
 - Autoriser la modification d'une réservation si les nouvelles dates de
 celle-ci ne se superposent à elle-même.
-
+- Créer un appel ajax pour trouver la chambre en fonction de l'hôtel
+- Refaire fonctionner la création d'une réservation
+-> Editer le formulaire de création ou édition de réservations
 
 * TARIF :
 - Avoir une fonction javascript H-lien
@@ -17,7 +17,6 @@ celle-ci ne se superposent à elle-même.
 * DOSSIER TECHNIQUE :
 - Relire le dossier technique et le mettre à jour
 
-- Renommer le titre H1 des pages pour qu'elles soient descriptives
 
 
 - GESTIONNAIRE

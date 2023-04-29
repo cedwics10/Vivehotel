@@ -184,20 +184,11 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	function a_services_edit()
 	{
 		checkallow('admin');
+
 		$reservation = new Reservation();
 
 		$res = $reservation->select($_GET['id']);
 		$noHotel = $res['res_hotel'];
-
-
-		$data = $reservation->reservationServices($_GET["id"]);
-
-		foreach ($data as $enreg) {
-			// Vérifie si le service ajouté correspond déjà à un service de la réservation
-			if ($_POST['com_service'] == $enreg['com_service']) {
-				$_SESSION['message'][] = 'Le service a déjà été pris par cette réservation';
-			}
-		}
 
 		$reservation->save($_POST);
 		header('Location: ' . hlien('reservation', 'services', 'id', $_GET['id']));
@@ -214,21 +205,12 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		checkallow('admin');
 		$reservation = new Reservation();
 
-		$data = $reservation->reservationServices($_POST["com_reservation"]);
-
-
-		foreach ($data as $enreg) {
-			// Vérifie si le service ajouté correspond déjà à un service de la réservation
-			if ($_POST['com_service'] == $enreg['com_service']) {
-				$_SESSION['message'][] = 'Le service a déjà été pris par cette réservation';
-			}
-		}
-
 		$commander = new Commander();
 		$commander->save($_POST);
 
+		$_SESSION["message"][] =  'Le nouveau service a été commandé pour la réservation.';
 		header('Location: ' . hlien('reservation', 'services', 'id', $_POST['com_reservation']));
-		require $this->gabarit;
+		exit();
 	}
 
 	/**
