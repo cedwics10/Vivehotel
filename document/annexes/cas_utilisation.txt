@@ -1,7 +1,8 @@
-
+* Dataset
+- Simplifier le dataset
 
 * ALL
-- Revoir le script du "dataset"
+- Créer une pagination sur toutes les pages du CRUD
 - Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
 - cha type lit
 - Renommer le titre H1 des pages pour qu'elles soient descriptives
@@ -21,8 +22,6 @@ celle-ci ne se superposent à elle-même.
 
 * DOSSIER TECHNIQUE :
 - Relire le dossier technique et le mettre à jour
-
-
 
 - GESTIONNAIRE
 * possibilité de gérer les chambres de son hôtel
