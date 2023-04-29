@@ -1,3 +1,22 @@
+- GESTIONNAIRE
+* Possibilité de gérer les chambres de son hôtel
+* Possibilité de gérer les réservations de son hôtel
+* Possibilité de voir les statistiques de son hôtel
+
+- TELECONSEILLERS
+- Consulter les disponibilités des chambres pour tout hôtel,
+- Gérer les réservations pour tout hôtel.
+- Calculer le chiffre d’affaire du groupe.
+
+ANONYME 
+- Consulter la liste des hôtels, leurs descriptifS, leur services,
+- Faire une recherche selon différents critères : géographique, catégorie d’hôtel, type de service.
+- Etudier la possibilité d’afficher sur une carte de france les hôtels (prévoir les propriétés « longitude » et « latitude »).
+- Consulter  les différentes catégories de chambres d’un hôtel
+- consulter les chambres avec leurs descriptifs et leurs tarifs
+
+
+
 * Dataset
 - Simplifier le dataset
 
@@ -23,13 +42,7 @@ celle-ci ne se superposent à elle-même.
 * DOSSIER TECHNIQUE :
 - Relire le dossier technique et le mettre à jour
 
-- GESTIONNAIRE
-* possibilité de gérer les chambres de son hôtel
-* possibilité de gérer les réservations de son hôtel
-* possibilité de voir les statisituqes de son hôtel
 
-- TELECONSEILLERS
-- Créer les pages des téléconseillers
 
 - CLIENTS
 - Créer les pages des cleints
