@@ -105,7 +105,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		checkallow(['admin', 'gestionnaire']);
 
 		if (
-			$_SESSION["per_role"] == 'gestionnaire'
+			$_SESSION['per_role'] == 'gestionnaire'
 			and $_SESSION['per_hotel'] != $resInfo['res_hotel']
 		) {
 			header('Location: ' . hlien('gestionnaire', 'hotel'));
@@ -114,7 +114,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 
 
 		$aDoublons = $u->aDoublons($_POST);
-		// Réécrire cette condition (?)
+
 		if ($aDoublons and $_POST['res_etat'] == '') {
 			$_SESSION["message"][] = "La chambre n'est pas libre entre ces deux dates : "
 				. "la réservation n'a pas été modifiée";
@@ -147,12 +147,30 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_delete()
 	{
-		checkallow('admin');
-		if (isset($_GET["id"])) {
-			$u = new Reservation();
-			$u->delete($_GET["id"]);
-			$_SESSION["message"][] = "L'enregistrement Reservation a bien été supprimé.";
+
+		checkallow(['admin', 'gestionnaire']);
+
+		if (!isset($_GET["id"]) or !is_numeric($_GET['id'])) {
+			header("location:" . hlien("reservation"));
 		}
+
+		$u = new Reservation();
+		$data = $u->select($_GET['id']);
+
+		if (
+			$_SESSION['per_role'] == 'gestionnaire'
+			and $_SESSION['per_hotel'] != $data['res_hotel']
+		) {
+			header('Location: ' . hlien('gestionnaire', 'hotel'));
+			exit();
+		}
+
+		if (!is_array($data)) {
+			header("location:" . hlien("reservation"));
+		}
+
+		$u->delete($_GET["id"]);
+		$_SESSION["message"][] = "L'enregistrement Reservation a bien été supprimé.";
 		header("location:" . hlien("reservation"));
 	}
 

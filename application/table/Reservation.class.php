@@ -70,7 +70,8 @@ class Reservation extends Table
 		$stmt = self::$link->prepare($sql);
 		$stmt->bindValue(':id', $id);
 		$stmt->execute();
-		return $stmt->fetch();
+		$data = $stmt->fetch();
+		return (is_array($data)) ? $data : [];
 	}
 
 	/**
