@@ -101,11 +101,13 @@ function checkAllow(string|array $profil)
 		$profil = [$profil];
 	}
 
-	/* DISJONCTION :
-	Si client est dans la liste : il faut que la vérif fail
-	Si client n'est pas dans la liste : il faut que la vérif réussisse
-	*/
-	$checkClientFaled  = !in_array('client', $profil) or isset($_SESSION["cli_id"]);
+	if (
+		isset($_SESION['cli_role'])
+		and in_array($_SESSION['cli_role'], $profil)
+	) {
+		return false;
+	}
+
 	if (
 		isset($_SESSION["per_role"])
 		and !in_array($_SESSION['per_role'], $profil)
@@ -161,6 +163,28 @@ function FormRecherche($className)
 	</p>
 <?php
 }
+
+/**
+ * checkAuto
+ * Un gestionnaire n'a le droit de gérer qu'un unique hôtel. Cette fonction
+ * vérifie à partir d'un enregistrement SQL si la clé du numéro d'hôtel
+ * correspond bien à l'hôtel actuel du gestionnaire. Si les dexu valeurs
+ * diffèrent, cela signifie que le gestionnaire tente de lire des données
+ * sur lesquelles il n'a aucun rôle.
+ * @return bool
+ */
+function gestionnaireCheckHotel(string $rowKeyToCheck, array $data, string $redirection = '')
+{
+	$lien = ($redirection == '') ? hlien('gestionnaire', 'hotel') : $redirection;
+	if (
+		$_SESSION['per_role'] == 'gestionnaire'
+		and $_SESSION['per_hotel'] != $data[$rowKeyToCheck]
+	) {
+		header('Location: ' . $lien);
+		exit();
+	}
+}
+
 
 // Modifier les dates dans un format en Français
 function dateFr($date)

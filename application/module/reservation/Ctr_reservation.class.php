@@ -22,17 +22,16 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	function a_index()
 	{
 		checkallow(['admin', 'gestionnaire']);
-
 		if (
-			isset($_SESION['per_role'])
-			and $_SESSION['per_role'] == 'gestionnaire'
+			$_SESSION['per_role'] == 'gestionnaire'
 		) {
-			header('Location: ' . hlien('gesstionnaire', 'hotel'));
+			header('Location: ' . hlien('gestionnaire', 'hotel'));
 			exit();
 		}
 
 		$u = new Reservation();
 		$data = $u->selectAll();
+
 		require $this->gabarit;
 	}
 
@@ -43,12 +42,15 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_hotel()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
+
 		if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 			$_SESSION['message'][]  = "Numéro d'hôtel invalide";
 			header('Location: ' . hlien('chambre'));
 			exit();
 		}
+
+		gestionnaireCheckHotel('id', $_GET);
 
 		$h = new Hotel();
 		$hotData = $h->select($_GET['id']);
@@ -79,16 +81,11 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 			$row = $u->emptyRecord();
 			$res_commandes = [];
 		}
+		gestionnaireCheckHotel('res_hotel', $row);
 
 		extract($row);
 
-		if (
-			$_SESSION["per_role"] == 'gestionnaire'
-			and $_SESSION['per_hotel'] != $res_hotel
-		) {
-			header('Location: ' . hlien('gestionnaire', 'hotel'));
-			exit();
-		}
+
 		require $this->gabarit;
 	}
 
@@ -103,14 +100,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		$resInfo = $u->select($_POST['res_id']);
 
 		checkallow(['admin', 'gestionnaire']);
-
-		if (
-			$_SESSION['per_role'] == 'gestionnaire'
-			and $_SESSION['per_hotel'] != $resInfo['res_hotel']
-		) {
-			header('Location: ' . hlien('gestionnaire', 'hotel'));
-			exit();
-		}
+		gestionnaireCheckHotel('id', $resInfo);
 
 
 		$aDoublons = $u->aDoublons($_POST);
@@ -157,13 +147,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		$u = new Reservation();
 		$data = $u->select($_GET['id']);
 
-		if (
-			$_SESSION['per_role'] == 'gestionnaire'
-			and $_SESSION['per_hotel'] != $data['res_hotel']
-		) {
-			header('Location: ' . hlien('gestionnaire', 'hotel'));
-			exit();
-		}
+		gestionnaireCheckHotel('id', $data);
 
 		if (!is_array($data)) {
 			header("location:" . hlien("reservation"));
@@ -215,17 +199,13 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	{
 		checkallow(['admin', 'gestionnaire']);
 
+
 		$reservation = new Reservation();
 		$dataRes = $reservation->select($_GET['id']);
 		extract($dataRes);
 
-		if (
-			$_SESSION["per_role"] == 'gestionnaire'
-			and $_SESSION['per_hotel'] != $res_hotel
-		) {
-			header('Location: ' . hlien('gestionnaire', 'hotel'));
-			exit();
-		}
+		gestionnaireCheckHotel('res_hotel', $dataRes);
+
 
 		$data = $reservation->reservationServices($_GET['id']);
 
@@ -245,6 +225,9 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		$reservation = new Reservation();
 
 		$res = $reservation->select($_GET['id']);
+
+		gestionnaireCheckHotel('res_hotel', $res);
+
 		$noHotel = $res['res_hotel'];
 
 		$reservation->save($_POST);
@@ -259,11 +242,16 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services_save()
 	{
-		checkallow('admin');
-		$reservation = new Reservation();
+		checkallow(['admin', 'gestionnaire']);
 
-		$commander = new Commander();
-		$commander->save($_POST);
+
+		$reservation = new Reservation();
+		$dataRes = $reservation->select($_POST['com_reservation']);
+
+		gestionnaireCheckHotel('res_hotel', $dataRes);
+
+		$c = new Commander();
+		$c->save($_POST);
 
 		$_SESSION["message"][] =  'Le nouveau service a été commandé pour la réservation.';
 		header('Location: ' . hlien('reservation', 'services', 'id', $_POST['com_reservation']));
@@ -277,26 +265,29 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services_delete()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
 
-		if (isset($_GET["id"])) {
-
-			$u = new Commander();
-			$com = $u->select($_GET['id']);
-			$idReservation = $com['com_reservation'];
-
-			$u->delete($_GET["id"]);
-			$_SESSION["message"][] = "L'enregistrement Commander a bien été supprimé.";
-			header("Location: " . hlien("reservation", "services", "id", $idReservation));
-			exit();
+		if (!isset($_GET["id"]) or !is_numeric($_GET['id'])) {
+			$_SESSION['message'][] = 'Lien invalide.';
+			header("location: " . hlien("reservation"));
 		}
-		header("location: " . hlien("reservation"));
+
+		$u = new Commander();
+		$data = $u->select($_GET['id']);
+		gestionnaireCheckHotel('res_hotel', $data);
+
+		$idReservation = $data['com_reservation'];
+
+		$u->delete($_GET["id"]);
+		$_SESSION["message"][] = "L'enregistrement Commander a bien été supprimé.";
+		header("Location: " . hlien("reservation", "services", "id", $idReservation));
+		exit();
 	}
 
 	function a_ajax_chotel()
 	{
-		checkAllow('admin');
-
+		checkAllow(['admin', 'gestionnaire']);
+		gestionnaireCheckHotel('hotel', $_GET);
 		$cha = new Chambre();
 		$listeChambresHotel = $cha->chaHotel($_GET['hotel']);
 
