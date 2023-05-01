@@ -1,11 +1,10 @@
 - GESTIONNAIRE
-* Possibilité de gérer les réservations de son hôtel [Tester sécu accès]
-* Possibilité de gérer les chambres de son hôtel [Créer droits gestionnaires]
+* Tester la sécurité de la possibilité de gérer les réservations de son hôtel [Tester sécu accès]
+* Créer des droits gestionnaires pour gérer les chambres de son hôtel
 
 - TELECONSEILLERS
-- Consulter les disponibilités des chambres pour tout hôtel
+- Consulter les disponibilités des chambres pour tout hôtel (pour le temps time() )
 - Gérer les réservations pour tout hôtel. (tester)
-- Calculer le chiffre d’affaire du groupe.
 
 ANONYME 
 
@@ -18,15 +17,14 @@ ANONYME
 
 
 * Dataset
-- Simplifier le dataset
+- Travailler sur le code du dataset
+- cha type lit avec un l MINUSCULE
 
 * ALL
-- Créer une pagination sur toutes les pages du CRUD
-- Utiliser le code pour les tableaux responsifs en CSS
-
 - Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
 
-- cha type lit avec un l MINUSCULE
+- Créer une pagination sur toutes les pages du CRUD
+- Utiliser le code pour les tableaux responsifs en CSS
 
 - Renommer le titre H1 des pages pour qu'elles soient descriptives
 - Mettre des commentaires automatiques pour les classes et les fonctions
