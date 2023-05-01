@@ -20,8 +20,8 @@
           <li><a class='nav-link' href='<?= hlien("tarifer", "index") ?>'>Tarif</a></li>
         <?php } else if (isset($_SESSION['per_role']) and $_SESSION["per_role"] == 'teleconseiller') { ?>
 
-          <li><a class="nav-link" href="<?= hlien("reservation", "index") ?>">Reservation</a></li>
-          <li><a class="nav-link" href="<?= hlien("chambre", "index") ?>">Chambre</a></li>
+          <li><a class="nav-link" href="<?= hlien("reservation", "index") ?>">Reservations</a></li>
+          <li><a class="nav-link" href="<?= hlien("hotel", "teleconseiller") ?>">Hôtels</a></li>
           <li><a class="nav-link" href="<?= hlien("_default", "statistiques") ?>">Statistiques</a></li>
         <?php } else if (isset($_SESSION['per_role']) and $_SESSION["per_role"] == 'gestionnaire') { ?>
           <li><a class="nav-link" href="<?= hlien("gestionnaire", "hotel")  ?>">Réservation</a></li>

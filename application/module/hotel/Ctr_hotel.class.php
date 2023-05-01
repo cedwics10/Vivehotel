@@ -27,6 +27,14 @@ class Ctr_hotel extends Ctr_controleur implements I_crud
 		require $this->gabarit;
 	}
 
+	function a_teleconseiller()
+	{
+		checkallow('teleconseiller');
+		$u = new Hotel();
+		$data = $u->selectAll();
+		require $this->gabarit;
+	}
+
 
 	/**
 	 * a_edit

@@ -21,7 +21,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_index()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 		if (
 			$_SESSION['per_role'] == 'gestionnaire'
 		) {
@@ -42,7 +42,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_hotel()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 		if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 			$_SESSION['message'][]  = "Numéro d'hôtel invalide";
@@ -70,7 +70,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_edit()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 		$id = isset($_GET["id"]) ? $_GET["id"] : 0;
 		$u = new Reservation();
@@ -99,7 +99,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		$u = new Reservation();
 		$resInfo = $u->select($_POST['res_id']);
 
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 		gestionnaireCheckHotel('id', $resInfo);
 
 
@@ -138,7 +138,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	function a_delete()
 	{
 
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 		if (!isset($_GET["id"]) or !is_numeric($_GET['id'])) {
 			header("location:" . hlien("reservation"));
@@ -165,7 +165,8 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_client()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'teleconseiller']);
+
 		if (!isset($_GET["id"]))
 			header('Location: ' . hlien('client'));
 
@@ -185,7 +186,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_save_res()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'teleconseiller']);
 		if (!isset($_GET["id"]))
 			header('Location: ' . hlien('client'));
 	}
@@ -197,7 +198,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 
 		$reservation = new Reservation();
@@ -220,7 +221,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services_edit()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'teleconseiller']);
 
 		$reservation = new Reservation();
 
@@ -242,7 +243,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services_save()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 
 		$reservation = new Reservation();
@@ -265,7 +266,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 	 */
 	function a_services_delete()
 	{
-		checkallow(['admin', 'gestionnaire']);
+		checkallow(['admin', 'gestionnaire', 'teleconseiller']);
 
 		if (!isset($_GET["id"]) or !is_numeric($_GET['id'])) {
 			$_SESSION['message'][] = 'Lien invalide.';
@@ -286,7 +287,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 
 	function a_ajax_chotel()
 	{
-		checkAllow(['admin', 'gestionnaire']);
+		checkAllow(['admin', 'gestionnaire', 'teleconseiller']);
 		gestionnaireCheckHotel('hotel', $_GET);
 		$cha = new Chambre();
 		$listeChambresHotel = $cha->chaHotel($_GET['hotel']);

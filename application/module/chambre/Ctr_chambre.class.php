@@ -67,6 +67,29 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	}
 
 	/**
+	 * a_hotel
+	 *
+	 * @return void Page de la liste des chambres d'un hôtel
+	 */
+	function a_hotel_tele()
+	{
+		checkAllow(['teleconseiller']);
+		if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+			$_SESSION['message'][]  = "Numéro d'hôtel invalide";
+			header('Location: ' . hlien('chambre'));
+			exit();
+		}
+
+		$h = new Hotel();
+		$hotData = $h->select($_GET['id']);
+		extract($hotData);
+		$c = new Chambre();
+		$data = $c->chaHotel($_GET['id']);
+		require $this->gabarit;
+	}
+
+
+	/**
 	 * a_edit
 	 *
 	 * @return void Page d'édition d'une chambre
