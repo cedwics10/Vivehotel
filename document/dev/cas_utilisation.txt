@@ -1,20 +1,18 @@
-- GESTIONNAIRE
-* Tester la sécurité de la possibilité de gérer les réservations de son hôtel [Tester sécu accès]
-* Créer des droits gestionnaires pour gérer les chambres de son hôtel
-
 - TELECONSEILLERS
-- Consulter les disponibilités des chambres pour tout hôtel (pour le temps time() )
+- Créer une requête qui indique si une chambre a déjà uen réservation en cours 
+- Lister uniquement les chambres actives dans la partie téléconseiller
+- Remplacer le statut de la chambre par une indication sur sa disponibilité
+
 - Gérer les réservations pour tout hôtel. (tester)
 
-ANONYME 
+ANONYME
+- Faire une recherche selon différents critères : géographique, catégorie d’hôtel, type de service.
 
 - Consulter la liste des hôtels, leurs descriptifS, leurs services
-- Consulter  les différentes catégories de chambres d’un hôtel
+- Consulter les différentes catégories de chambres d’un hôtel
 - Consulter les chambres avec leurs descriptifs et leurs tarifs
 
-- Faire une recherche selon différents critères : géographique, catégorie d’hôtel, type de service.
 - Etudier la possibilité d’afficher sur une carte de france les hôtels (prévoir les propriétés « longitude » et « latitude »).
-
 
 * Dataset
 - Travailler sur le code du dataset
