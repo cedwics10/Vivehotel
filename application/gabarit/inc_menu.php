@@ -25,8 +25,8 @@
           <li><a class="nav-link" href="<?= hlien("_default", "statistiques") ?>">Statistiques</a></li>
         <?php } else if (isset($_SESSION['per_role']) and $_SESSION["per_role"] == 'gestionnaire') { ?>
           <li><a class="nav-link" href="<?= hlien("gestionnaire", "hotel")  ?>">Réservation</a></li>
-          <li><a class="nav-link" href="<?= hlien("gestionnaire", "chambre") ?>">Chambres</a></li>
-          <li><a class="nav-link" href="<?= hlien("gestionnaire", "statistiques") ?>">Statistiques</a></li>
+          <li><a class="nav-link" href="<?= hlien("chambre", "hotel", "id", $_SESSION['per_hotel']) ?>">Chambres</a></li>
+          <li><a class="nav-link" href="<?= hlien("hotel", "statistiques", "id", $_SESSION['per_hotel']) ?>">Statistiques</a></li>
         <?php } ?>
       </ul>
       <ul class="navbar-nav ml-auto">

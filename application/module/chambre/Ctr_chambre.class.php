@@ -26,7 +26,8 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_index()
 	{
-		checkAllow('admin');
+		checkAllow(['admin']);
+
 		$chClasse = new Chambre();
 
 		array_map('trim', $_POST);
@@ -50,7 +51,7 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_hotel()
 	{
-
+		checkAllow(['admin', 'gestionnaire']);
 		if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 			$_SESSION['message'][]  = "Numéro d'hôtel invalide";
 			header('Location: ' . hlien('chambre'));

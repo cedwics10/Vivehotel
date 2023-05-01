@@ -177,8 +177,8 @@ function gestionnaireCheckHotel(string $rowKeyToCheck, array $data, string $redi
 {
 	$lien = ($redirection == '') ? hlien('gestionnaire', 'hotel') : $redirection;
 	if (
-		$_SESSION['per_role'] == 'gestionnaire'
-		and $_SESSION['per_hotel'] != $data[$rowKeyToCheck]
+		$_SESSION['per_role'] === 'gestionnaire'
+		and $_SESSION['per_hotel'] !== (int) $data[$rowKeyToCheck]
 	) {
 		header('Location: ' . $lien);
 		exit();

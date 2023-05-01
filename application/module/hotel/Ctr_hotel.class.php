@@ -155,7 +155,20 @@ class Ctr_hotel extends Ctr_controleur implements I_crud
 	 */
 	function a_statistiques()
 	{
-		checkallow('admin');
+		checkallow(['admin', 'gestionnaire']);
+
+		if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+			$_SESSION['message'][] = "Le numéro de l'hôtel demandé est invalide";
+			header('Location: ' . hlien('hotel', 'index'));
+			exit();
+		}
+
+
+		gestionnaireCheckHotel(
+			'id',
+			$_GET,
+			hlien('chambre', 'hotel', 'id', $_SESSION['per_hotel'])
+		);
 
 		$hotel = new Hotel();
 		$data = (isset($_GET['id'])) ? $hotel->select($_GET['id']) : [];
