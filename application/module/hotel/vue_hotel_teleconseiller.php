@@ -17,7 +17,7 @@
 				<td><?= mhe($row['hot_nom']) ?></td>
 				<td><?= mhe($row['hot_departement']) ?></td>
 				<td><a class="btn btn btn-success" href="<?= hlien("chambre", "hotel_tele", "id", $row["hot_id"]) ?>">Chambres</a></td>
-				<td><a class="btn btn btn-success" href="<?= hlien("reservation", "hotel", "id", $row["hot_id"]) ?>">Réservation</a></td>
+				<td><a class="btn btn btn-dark" href="<?= hlien("reservation", "hotel", "id", $row["hot_id"]) ?>">Réservation</a></td>
 			</tr>
 		<?php } ?>
 	</tbody>
