@@ -8,27 +8,32 @@
 - Calculer le chiffre d’affaire du groupe.
 
 ANONYME 
+
 - Consulter la liste des hôtels, leurs descriptifS, leurs services
+- Consulter  les différentes catégories de chambres d’un hôtel
+- Consulter les chambres avec leurs descriptifs et leurs tarifs
+
 - Faire une recherche selon différents critères : géographique, catégorie d’hôtel, type de service.
 - Etudier la possibilité d’afficher sur une carte de france les hôtels (prévoir les propriétés « longitude » et « latitude »).
-- Consulter  les différentes catégories de chambres d’un hôtel
-- consulter les chambres avec leurs descriptifs et leurs tarifs
+
 
 * Dataset
 - Simplifier le dataset
 
 * ALL
 - Créer une pagination sur toutes les pages du CRUD
+- Utiliser le code pour les tableaux responsifs en CSS
+
 - Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
-- cha type lit
+
+- cha type lit avec un l MINUSCULE
+
 - Renommer le titre H1 des pages pour qu'elles soient descriptives
 - Mettre des commentaires automatiques pour les classes et les fonctions
 - Lister les fonctions et les procédures
-- Utiliser le code pour les tableaux responsifs
+
 
 * RESERVATION
-- Autoriser la modification d'une réservation si les nouvelles dates de
-celle-ci ne se superposent à elle-même.
 - Créer un appel ajax pour trouver la chambre en fonction de l'hôtel
 - Refaire fonctionner la création d'une réservation
 -> Editer le formulaire de création ou édition de réservations
@@ -37,7 +42,10 @@ celle-ci ne se superposent à elle-même.
 - Avoir une fonction javascript H-lien
 
 * DOSSIER TECHNIQUE :
-- Relire le dossier technique et le mettre à jour
+- Relire le dossier technique
+- Relire le document utilisateur
+- Mettre à jour le dossier technique
+- Mettre à jour le dossier utilsiateur 
 
 
 
