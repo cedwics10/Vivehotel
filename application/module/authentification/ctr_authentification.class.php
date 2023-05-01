@@ -29,37 +29,27 @@ class Ctr_authentification extends Ctr_controleur
         }
 
         if (isset($btSubmit)) {
-            //vérifier que $cli_email est unique
+
             if (!Utilisateur::estEmailUnique($cli_email)) {
                 $_SESSION["message"][] = "$cli_email : cette adresse mail est déjà prise. Veuillez en saisir une autre.";
                 require $this->gabarit;
                 exit;
             }
 
-            //vérifier que $cli_mdp==$cli_mdp2
             if ($cli_mdp != $cli_mdp2) {
                 $_SESSION["message"][] = "La vérification du mot de passe à échouer. Veuillez vérifier votre mot de passe.";
                 require $this->gabarit;
                 exit;
             }
 
-            //Tous est ok : enregistrement du nouvel Utilisateur
             $_POST["cli_id"] = 0;
             $_POST["cli_mdp"] = password_hash($_POST["cli_mdp"], PASSWORD_DEFAULT);
             $_POST["cli_profil"] = "client";
             (new Utilisateur)->save($_POST);
             $_SESSION["message"][] = "procédez à votre réservation !  $cli_nom ! Inscription réussie. Vous pouvez maintenant vous connecter.";
             //rediriger sur la réservation
-            header("location:" . hlien("_reservation"));
-
-            //Tous est ok : enregistrement du nouvel utilisateur
-            $_POST["per_id"] = 0;
-            $_POST["per_mdp"] = password_hash($_POST["per_mdp"], PASSWORD_DEFAULT);
-            $_POST["per_profil"] = "client";
-            (new Utilisateur)->save($_POST);
-            $_SESSION["message"][] = "Bravo $per_nom ! Inscription réussie. Vous pouvez maintenant vous connecter.";
-            //rediriger sur l'accueil
-            header("location:" . hlien("_default"));
+            header("location:" . hlien("index"));
+            exit();
         } else {
             //affichage du formulaire
             extract((new Utilisateur())->emptyRecord());
@@ -151,7 +141,6 @@ class Ctr_authentification extends Ctr_controleur
                 require $this->gabarit;
                 exit;
             }
-
 
             extract($row);
 
