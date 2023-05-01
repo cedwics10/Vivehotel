@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Thrainly Sellier;
+  src: url(_fonts/ThrainlySellier.otf);
+}
+
+@font-face {
+  font-family: Bruno Ace;
+  src: url(_fonts/BrunoAceRegular.ttf);
+}
+
 body {
   margin-top: 100px;
 }
@@ -5,6 +15,14 @@ body {
 .entete {
   margin-top: 100px;
   background-color: #e4dcd1;
+}
+
+.entete h1 {
+  font-family: Thrainly Sellier;
+}
+
+.col p {
+  font-family: Bruno Ace;
 }
 
 img.logo {
@@ -42,6 +60,7 @@ td .tarif {
 .lien_pied {
   float: right;
 }
+
 /*.button {
   display: inline-block;
   background-color: #f3412a;

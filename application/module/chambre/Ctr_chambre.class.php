@@ -58,8 +58,12 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 			exit();
 		}
 
+		gestionnaireCheckHotel('id', $_GET, hlien());
+
+
 		$h = new Hotel();
 		$hotData = $h->select($_GET['id']);
+
 		extract($hotData);
 		$c = new Chambre();
 		$data = $c->chaHotel($_GET['id']);
@@ -96,8 +100,19 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_edit()
 	{
-		checkAllow('admin');
+		checkAllow(['admin', 'gestionnaire']);
+
 		$id = isset($_GET["id"]) ? $_GET["id"] : 0;
+
+		if (
+			$id === 0
+			and isset($_SESSION['per_profil'])
+			and $_SESSION['per_profil'] === 'gestionnaire'
+		) {
+			hlien();
+			exit();
+		}
+
 		$u = new Chambre();
 		if ($id > 0)
 			$row = $u->select($id);
@@ -105,6 +120,7 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 			$row = $u->emptyRecord();
 
 		extract($row);
+		gestionnaireCheckHotel('cha_hotel', $row, hlien());
 
 		$CRI_RECHERCHE = Chambre::CRI_RECHERCHE;
 
@@ -121,28 +137,33 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	{
 
 		$u = new Chambre();
-		checkAllow('admin');
+		checkAllow(['admin', 'gestionnaire']);
 
-		if (isset($_POST["btSubmit"])) {
-			$dataRoom = $u->select($_POST['cha_id']);
-
-			if ($dataRoom === false) {
-				$_SESSION['message'][] = "La chambre n'existe pas";
-				header('Location: ' . hlien('chambre'));
-				exit();
-			}
-
-			if (Hotel::NumeroIndisponible($_POST['cha_numero'], $dataRoom['cha_hotel'], $_POST['cha_id'])) {
-				$_SESSION['message'][] = 'Le numéro de chambre a déjà été rpis';
-				header('Location: ' . hlien('chambre', 'edit', 'id', $_POST['cha_id']));
-				exit();
-			}
-
-			$u->save($_POST);
-			$_SESSION["message"][] = ($_POST["cha_id"] == 0)
-				?  "Le nouvel enregistrement chambre a bien été créé."
-				:  "L'enregistrement Chambre a bien été mis à jour.";
+		if (!isset($_POST["btSubmit"])) {
+			hlien();
+			exit();
 		}
+		$dataRoom = $u->select($_POST['cha_id']);
+		gestionnaireCheckHotel('cha_hotel', $dataRoom, hlien());
+
+
+		if ($dataRoom === false) {
+			$_SESSION['message'][] = "La chambre n'existe pas";
+			header('Location: ' . hlien('chambre'));
+			exit();
+		}
+
+		if (Hotel::NumeroIndisponible($_POST['cha_numero'], $dataRoom['cha_hotel'], $_POST['cha_id'])) {
+			$_SESSION['message'][] = 'Le numéro de chambre a déjà été pris';
+			header('Location: ' . hlien('chambre', 'edit', 'id', $_POST['cha_id']));
+			exit();
+		}
+
+		$u->save($_POST);
+		$_SESSION["message"][] = ($_POST["cha_id"] == 0)
+			?  "Le nouvel enregistrement chambre a bien été créé."
+			:  "L'enregistrement Chambre a bien été mis à jour.";
+
 
 		header('Location: ' . hlien('chambre', 'edit', 'id', $_POST['cha_id']));
 	}
@@ -157,12 +178,27 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_delete()
 	{
-		checkAllow('admin');
-		if (isset($_GET["id"])) {
-			$u = new Chambre();
-			$u->delete($_GET["id"]);
-			$_SESSION["message"][] = "L'enregistrement Chambre a bien été supprimé.";
+		checkAllow(['admin', 'gestionnaire']);
+
+		if (!isset($_GET["id"]) or !is_numeric($_GET['id'])) {
+			header("location:" . hlien("chambre"));
+			exit();
 		}
+
+		$u = new Chambre();
+		$dataRoom = $u->select($_GET['id']);
+
+
+		if (count($dataRoom) == 0) {
+			header("location:" . hlien("chambre"));
+			exit();
+		}
+
+		gestionnaireCheckHotel('cha_hotel', $dataRoom, hlien());
+
+		$u->delete($_GET["id"]);
+		$_SESSION["message"][] = "L'enregistrement Chambre a bien été supprimé.";
+
 		header("location:" . hlien("chambre"));
 	}
 
@@ -173,13 +209,16 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 	 */
 	function a_reservations()
 	{
-		checkAllow('admin');
+		checkAllow(['admin', 'gestionnaire']);
 		if (!is_numeric($_GET['id'])) {
 			$_SESSION['message'][] = 'Le lien est invalide';
 			header('Location: ' . hlien('chambre', 'index'));
 		}
 		$cha = new Chambre();
 		$dataCha = $cha->select($_GET['id']);
+
+		gestionnaireCheckHotel('cha_hotel', $dataCha, hlien());
+
 		if ($dataCha === false) {
 			$_SESSION['message'][] = 'Le lien est invalide';
 			header('Location: ' . hlien('chambre', 'index'));
@@ -192,10 +231,28 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 		require $this->gabarit;
 	}
 
+	/**
+	 * a_detail
+	 *
+	 * @return void
+	 */
 	function a_detail()
 	{
+		checkAllow(['admin', 'gestionnaire']);
+
+		if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+			hlien();
+			exit();
+		}
+
 		$ch = new Chambre();
 		$data = $ch->select($_GET['id']);
+
+		if (count($data) === 0) {
+			hlien();
+			exit();
+		}
+		gestionnaireCheckHotel('cha_hotel', $data, hlien());
 
 		$res = new Reservation();
 		$nbRes = $res->countRes($_GET['id']);

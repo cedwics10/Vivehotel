@@ -1,4 +1,4 @@
-<h2>Description de la chambre "<?= mhe($data['hot_nom']) ?>"</h2>
+<h2>Description de la chambre "<?= mhe($data['cha_numero']) ?>"</h2>
 
 
 <table class="table table-striped">

@@ -47,14 +47,14 @@ class Chambre extends Table
 		$result = self::$link->query($sql);
 		return $result->fetchAll();
 	}
-	
+
 	/**
 	 * select
 	 *
 	 * @param  mixed $id
 	 * @return void
 	 */
-	function select(int $id) 
+	function select(int $id): array
 	{
 		$sql = 'SELECT * FROM chambre, hotel, chcategorie
 		WHERE cha_hotel = hot_id
@@ -63,7 +63,8 @@ class Chambre extends Table
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":id", $id, PDO::PARAM_INT);
 		$statement->execute();
-		return $statement->fetch();
+		$data = $statement->fetch();
+		return  is_array($data) ? $data : [];
 	}
 
 	// Sélectionne tous les enregistrement des chambres d'un hôtel
