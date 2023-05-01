@@ -19,6 +19,8 @@ class Ctr__default extends Ctr_controleur
      * a_index
      *
      * @return void Lance la page d'accueil du site
+     * - Formulaire de recherche
+     * - Hôtels les plus proches
      */
     public function a_index()
     {
@@ -32,6 +34,7 @@ class Ctr__default extends Ctr_controleur
      */
     public function a_statistiques()
     {
+        checkAuth(['admin', 'teleconseiller', 'gestionnaire']);
         $hotel = new Hotel();
         $stats = [
             'nbHotels' => $hotel->countAll(),
