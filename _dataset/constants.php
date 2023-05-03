@@ -2,7 +2,11 @@
 // Chambres
 const NB_CHAMBRE_P_HOTEL = 10;
 
-const CHAMBRE_STATUTS = ['Actif', 'Supprimé', 'En travaux'];
+const CHAMBRE_STATUTS = [
+    'Actif',
+    'Supprimé',
+    'En travaux'
+];
 
 const TYPE_LITS = [
     '2 Lits simples',
@@ -37,11 +41,11 @@ const HOTEL_STATUT = [
 
 // Hôtel (catégories)
 const HOTEL_CATEGORIE = [
-    "2 étoiles",
-    "3 étoiles",
-    "4 étoiles",
-    "5 étoiles",
-    "Palace"
+    '2 étoiles',
+    '3 étoiles',
+    '4 étoiles',
+    '5 étoiles',
+    'Palace'
 ];
 
 // Personnel
@@ -57,18 +61,18 @@ const NOM_ROLES = [
 
 // Services
 const SERVICES_NOM = [
-    "Piscine",
-    "Bien être",
-    "Remise en forme",
-    "Thalassothérapie",
-    "Tennis",
-    "Parking",
-    "Animal domestique accepté",
-    "Wifi/internet",
-    "Accessibilité personnes à mobilité réduite",
-    "Garde d\'enfant sur demande",
-    "Salle de fitness",
-    "Petit déjeuner"
+    'Piscine',
+    'Bien être',
+    'Remise en forme',
+    'Thalassothérapie',
+    'Tennis',
+    'Parking',
+    'Animal domestique accepté',
+    'Wifi/internet',
+    'Accessibilité personnes à mobilité réduite',
+    'Garde d\'enfant sur demande',
+    'Salle de fitness',
+    'Petit déjeuner'
 ];
 
 // Tarifs
