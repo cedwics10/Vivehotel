@@ -16,7 +16,7 @@ class Chambre extends Table
 	const CHA_STATUT = ['Actif', 'Supprimé', 'En travaux'];
 
 	const CRI_RECHERCHE = [
-		'Type lits' => 'cha_typeLit',
+		'Type lits' => 'cha_type_lit',
 		'Statut' => 'cha_statut',
 		'Description' => 'cha_description',
 	];
@@ -38,7 +38,7 @@ class Chambre extends Table
 	public function selectAll(): array // récupères tous les enregistrements des chambres
 	{
 		$sql = "SELECT  cha_id, cha_numero, 
-		cha_statut, cha_surface, cha_typeLit,  cha_description, cha_jacuzzi,
+		cha_statut, cha_surface, cha_type_lit,  cha_description, cha_jacuzzi,
 		cha_balcon, cha_wifi, cha_minibar, cha_coffre,
 		cha_vue, chc_categorie, cha_hotel, hot_nom FROM chambre, chcategorie, hotel 
 		WHERE cha_chcategorie = chc_id AND cha_hotel = hot_id
@@ -71,7 +71,7 @@ class Chambre extends Table
 	function chaHotel(int $id)
 	{
 		$sql = "SELECT cha_id, cha_numero, cha_hotel, 
-		cha_statut, cha_surface, cha_typeLit,  cha_description, cha_jacuzzi,
+		cha_statut, cha_surface, cha_type_lit,  cha_description, cha_jacuzzi,
 		cha_balcon, cha_wifi, cha_minibar, cha_coffre,
 		cha_vue, chc_categorie, cha_hotel 
 		FROM chambre, chcategorie, hotel 
@@ -95,7 +95,7 @@ class Chambre extends Table
 	public function chaRecherche(string $texte, string $champ)
 	{
 		$sql = "SELECT  cha_id, cha_numero, 
-		cha_statut, cha_surface, cha_typeLit,  cha_description, cha_jacuzzi,
+		cha_statut, cha_surface, cha_type_lit,  cha_description, cha_jacuzzi,
 		cha_balcon, cha_wifi, cha_minibar, cha_coffre,
 		cha_vue, chc_categorie, cha_hotel FROM chambre, chcategorie, hotel 
 		WHERE cha_chcategorie = chc_id 

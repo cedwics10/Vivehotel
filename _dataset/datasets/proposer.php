@@ -2,7 +2,7 @@
 $tab = [];
 $nbServicesHotel = [];
 $hotelListeSer = [];
-$id_services = range(1, count($servicesNom));
+$id_services = range(1, count(SERVICES_NOM));
 
 for ($hotel = 1; $hotel <= NOMBRE_HOTEL; $hotel++) {
 

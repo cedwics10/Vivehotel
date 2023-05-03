@@ -57,7 +57,7 @@ create table chambre (
     cha_numero varchar(500) not null,
     cha_statut varchar(500) not null,
     cha_surface int not null,
-    cha_typeLit varchar(500) not null,
+    cha_type_lit varchar(500) not null,
     cha_description text not null,
     cha_jacuzzi boolean not null,
     cha_balcon boolean not null,

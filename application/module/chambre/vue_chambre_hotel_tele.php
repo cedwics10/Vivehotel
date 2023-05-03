@@ -25,7 +25,7 @@
 				<td><?= mhe($row['cha_hotel']) ?></td>
 				<td><?= mhe($row['cha_statut']) ?></td>
 				<td><?= mhe($row['cha_surface']) ?>m²</td>
-				<td><?= mhe($row['cha_typeLit']) ?></td>
+				<td><?= mhe($row['cha_type_lit']) ?></td>
 				<td><?= $row['cha_description'] ?></td>
 				<td>
 					<?= ($row['cha_jacuzzi'] === 1 ? 'jaccuzi<br />' : '') ?>

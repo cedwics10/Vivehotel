@@ -26,12 +26,12 @@
         <label for='cha_surface'>Surface</label> : <?= mhe($cha_surface) ?>m²
     </div>
     <div class='form-group'>
-        <label for='cha_typeLit'>Type lits</label>
-        <select id='cha_typeLit' name='cha_typeLit' class='form-control'>
+        <label for='cha_type_lit'>Type lits</label>
+        <select id='cha_type_lit' name='cha_type_lit' class='form-control'>
             <?php
 
             foreach (Chambre::TYPE_LITS as $cle => $type_lit) {
-                $sel = ($type_lit == $cha_typeLit) ? 'selected' : ''; ?>
+                $sel = ($type_lit == $cha_type_lit) ? 'selected' : ''; ?>
                 <option value='<?= mhe($type_lit) ?>' $sel><?= mhe($type_lit) ?></option>
             <?php }
             ?>
