@@ -4,7 +4,7 @@
 $timestart = microtime(true);
 
 $includes = [
-    'constants.php',
+    '../constants.php',
     'connexion.php',
     'client.php',
     'services.php',

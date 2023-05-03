@@ -29,7 +29,11 @@ const NOMBRE_COMMANDES = 1500;
 
 // Hôtel
 const NOMBRE_HOTEL = 50;
-const HOTEL_STATUT = ['Actif', 'Supprimé', 'En travaux'];
+const HOTEL_STATUT = [
+    'Actif',
+    'Supprimé',
+    'En travaux'
+];
 
 // Hôtel (catégories)
 const HOTEL_CATEGORIE = [
@@ -52,7 +56,7 @@ const NOM_ROLES = [
 ];
 
 // Services
-$servicesNom = [
+const SERVICES_NOM = [
     "Piscine",
     "Bien être",
     "Remise en forme",
