@@ -85,7 +85,13 @@ class Chambre extends Table
 		return $statement->fetchAll();
 	}
 
-	// Retourne des enregistrements de chambres en fonction d'un crtière de recherche
+	/**
+	 * chaRecherche
+	 *
+	 * @param  string $texte
+	 * @param  string $champ
+	 * @return array enregistrements de chambres en fonction d'un crtière de recherche
+	 */
 	public function chaRecherche(string $texte, string $champ)
 	{
 		$sql = "SELECT  cha_id, cha_numero, 
