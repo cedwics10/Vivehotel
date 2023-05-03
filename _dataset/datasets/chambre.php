@@ -14,7 +14,7 @@ for ($cha_hotel = 1; $cha_hotel <= NOMBRE_HOTEL; $cha_hotel++) {
 
         $cha_chcategorie = mt_rand(1, count(CHA_CATEGORIE));
 
-        $cha_statut = CHAMBRE_STATUTS[array_rand(CHAMBRE_STATUTS)];
+        $cha_statut = ($cha_hotel < 5) ? 'Actif' : CHAMBRE_STATUTS[array_rand(CHAMBRE_STATUTS)];
         $cha_surface = mt_rand(10, 40);
         $cha_type_lit = TYPE_LITS[array_rand(TYPE_LITS)];
 

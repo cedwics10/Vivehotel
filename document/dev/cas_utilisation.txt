@@ -19,6 +19,7 @@ ANONYME
 - cha type lit avec un l MINUSCULE
 
 * ALL
+- Créer un fichier de constantes pour le site
 - Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
 
 - Créer une pagination sur toutes les pages du CRUD

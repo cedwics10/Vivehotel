@@ -76,8 +76,9 @@ class Chambre extends Table
 		cha_vue, chc_categorie, cha_hotel 
 		FROM chambre, chcategorie, hotel 
 		WHERE cha_chcategorie = chc_id 
-		AND cha_hotel = :id
 		AND cha_hotel = hot_id
+		AND cha_hotel = :id
+		AND cha_statut = 'Actif'
 		ORDER BY CAST(cha_numero AS int) ASC";
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":id", $id, PDO::PARAM_INT);
