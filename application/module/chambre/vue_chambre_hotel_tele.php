@@ -6,7 +6,6 @@
 		<tr>
 			<th>Numero</th>
 			<th>Hôtel</th>
-			<th>Statut</th>
 			<th>Surface</th>
 			<th>Type lits</th>
 
@@ -23,7 +22,6 @@
 			<tr>
 				<td><?= mhe($row['cha_numero']) ?></td>
 				<td><?= mhe($row['cha_hotel']) ?></td>
-				<td><?= mhe($row['cha_statut']) ?></td>
 				<td><?= mhe($row['cha_surface']) ?>m²</td>
 				<td><?= mhe($row['cha_type_lit']) ?></td>
 				<td><?= $row['cha_description'] ?></td>
