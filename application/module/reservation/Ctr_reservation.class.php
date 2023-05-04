@@ -107,13 +107,13 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 
 		if ($aDoublons and $_POST['res_etat'] == '') {
 			$_SESSION["message"][] = "La chambre n'est pas libre entre ces deux dates : "
-				. "la réservation n'a pas été modifiée";
+				. "pas de mise à jour";
 			header("location:" . hlien("reservation", "edit", "id", $_POST['res_id']));
 			exit();
 		}
 
 		if (strtotime($_POST['res_date_debut']) > strtotime($_POST['res_date_fin'])) {
-			$_SESSION["message"][] = "La réservation se serait terminé avant de commencer : pas de mise à jour";
+			$_SESSION["message"][] = "Les dates de réservation sont incohérentes : pas de mise à jour";
 			header("location:" . hlien("reservation", "edit", "id", $_POST['res_id']));
 			exit();
 		}
@@ -125,7 +125,9 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 			$_POST['res_date_creation'] = date('Y-m-d', time());
 		} else {
 			$_SESSION["message"][] = "L'enregistrement Reservation a bien été mise à jour.";
+			$_POST['res_date_maj'] = date('Y-m-d', time());
 		}
+
 		$u->save($_POST);
 		header("location:" . hlien("reservation", "edit", "id", $_POST['res_id']));
 	}

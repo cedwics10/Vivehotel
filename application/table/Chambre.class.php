@@ -52,7 +52,7 @@ class Chambre extends Table
 	 * select
 	 *
 	 * @param  mixed $id
-	 * @return void
+	 * @return void 
 	 */
 	function select(int $id): array
 	{
@@ -67,7 +67,13 @@ class Chambre extends Table
 		return  is_array($data) ? $data : [];
 	}
 
-	// Sélectionne tous les enregistrement des chambres d'un hôtel
+	// Sélectionne tous les enregistrement des chambres d'un hôtel	
+	/**
+	 * chaHotel
+	 *
+	 * @param  mixed $id
+	 * @return void
+	 */
 	function chaHotel(int $id)
 	{
 		$sql = "SELECT cha_id, cha_numero, cha_hotel, 
@@ -111,7 +117,13 @@ class Chambre extends Table
 		return $stmt->fetchAll();
 	}
 
-	// Liste déroulante de toutes les chambres de tous les hôtels
+
+	/**
+	 * OPTIONChambre
+	 *
+	 * @param  mixed $idChambre
+	 * @return void  Liste déroulante de toutes les chambres de tous les hôtels	
+	 */
 	static public function OPTIONChambre(string $idChambre)
 	{
 		return self::HTMLoptions('SELECT cha_id, cha_numero FROM chambre', 'cha_id', 'cha_numero', $idChambre);
@@ -126,5 +138,35 @@ class Chambre extends Table
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":id", $id, PDO::PARAM_INT);
 		$statement->execute();
+	}
+
+	/**
+	 * chambreLibre
+	 * Indique si une chambre est libre à l'heure actuelle
+	 * @param  mixed $res_chambre 
+	 * @return void
+	 */
+	static public function strChambreLibre(int $res_chambre, int $res_hotel)
+	{
+		$sql = 'SELECT COUNT(res_id)
+		FROM reservation
+		WHERE res_chambre = :res_chambre
+		AND res_hotel = :res_hotel
+		AND res_etat = "Validé"
+		AND res_date_debut <
+		CURDATE()
+		AND res_date_fin > CURDATE()
+		GROUP BY res_id';
+
+		$statement = Table::$link->prepare($sql);
+
+		$statement->bindValue(":res_chambre", $res_chambre, PDO::PARAM_INT);
+		$statement->bindValue(":res_hotel", $res_hotel, PDO::PARAM_INT);
+
+		$statement->execute();
+
+		$chaLibre = $statement->fetch();
+
+		return ($chaLibre == 0) ? 'libre' : 'occupée';
 	}
 }

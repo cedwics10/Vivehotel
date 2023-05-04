@@ -18,10 +18,14 @@
     </div>
     <div class='form-group'>
         <label for='res_etat'>Etat</label>
-        <select id='res_etat' class="form-control">
+        <select id='res_etat' name="res_etat" class="form-control">
             <?php
+
             foreach (Reservation::RES_ETAT as $etat) {
-                echo "<option value='$etat'>$etat</option>";
+                $sel = '';
+                if ($etat == $res_etat)
+                    $sel = 'selected';
+                echo "<option value='$etat' $sel>$etat</option>";
             }
             ?>
         </select>

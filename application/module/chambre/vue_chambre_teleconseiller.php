@@ -6,10 +6,7 @@
 		<tr>
 			<th>Numero</th>
 			<th>Hôtel</th>
-<<<<<<< HEAD
-=======
 			<th>Disponible ?</th>
->>>>>>> 7ddc73e (Edit chambres tele)
 			<th>Surface</th>
 			<th>Type lits</th>
 
@@ -26,12 +23,9 @@
 			<tr>
 				<td><?= mhe($row['cha_numero']) ?></td>
 				<td><?= mhe($row['cha_hotel']) ?></td>
-<<<<<<< HEAD
-=======
 				<td><?= Chambre::strChambreLibre($row['cha_id'], $row['cha_hotel']) ?></td>
->>>>>>> 7ddc73e (Edit chambres tele)
 				<td><?= mhe($row['cha_surface']) ?>m²</td>
-				<td><?= mhe($row['cha_type_lit']) ?></td>
+				<td><?= mhe($row['cha_typeLit']) ?></td>
 				<td><?= $row['cha_description'] ?></td>
 				<td>
 					<?= ($row['cha_jacuzzi'] === 1 ? 'jaccuzi<br />' : '') ?>
