@@ -19,7 +19,7 @@
     <div class='form-group'>
         <label for='res_chambre'>Chambre</label>
         <select id='res_chambre' name='res_chambre' type='text' class='form-control'>
-            <?= Chambre::OPTIONChambre($res_chambre); ?>
+
         </select>
     </div>
     <input class="btn btn-success" type="submit" name="btSubmit" value="Enregistrer" />
