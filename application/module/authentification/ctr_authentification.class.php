@@ -60,7 +60,7 @@ class Ctr_authentification extends Ctr_controleur
     /**
      * a_connexion
      *
-     * @return void Page de connexion pour les membres inscrits
+     * @return void Page de connexion pour les clients
      */
     public function a_connexion()
     {
@@ -90,13 +90,13 @@ class Ctr_authentification extends Ctr_controleur
 
             //Connexion réussie
             extract($row);
-            $_SESSION["cli_id"] = $cli_id;
-            $_SESSION["cli_nom"] = $cli_nom;
-            $_SESSION["cli_identifiant"] = $cli_identifiant;
-            $_SESSION["cli_email"] = $cli_email;
-            $_SESSION["cli_profil"] = $cli_profil;
-            $_SESSION["per_profil"] = 'client';
-            $_SESSION["message"][] = "Bienvenu $cli_identifiant $cli_nom.";
+            $_SESSION['cli_id'] = $cli_id;
+            $_SESSION['cli_nom'] = $cli_nom;
+            $_SESSION['cli_identifiant'] = $cli_identifiant;
+            $_SESSION['cli_email'] = $cli_email;
+            $_SESSION['cli_profil'] = $cli_profil;
+            $_SESSION['per_profil'] = 'client';
+            $_SESSION['message'][] = "Bienvenu $cli_identifiant $cli_nom.";
             header("location:" . hlien("_default"));
         } else {
             $cli_email = "";

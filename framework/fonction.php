@@ -103,9 +103,11 @@ function checkAllow(string|array $profil)
 
 	if (
 		isset($_SESION['cli_role'])
-		and in_array($_SESSION['cli_role'], $profil)
+		and !in_array($_SESSION['cli_role'], $profil)
 	) {
-		return false;
+		$_SESSION["message"][] = "Cette page n'existe pas.";
+		header("location:" . hlien("_default"));
+		exit();
 	}
 
 	if (

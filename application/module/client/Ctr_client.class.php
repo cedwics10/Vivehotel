@@ -89,4 +89,42 @@ class Ctr_client extends Ctr_controleur implements I_crud
 		}
 		header("location:" . hlien("client"));
 	}
+
+	/**
+	 * a_creer_res
+	 *
+	 * @return void
+	 */
+	function a_creer_res()
+	{
+	}
+
+	/**
+	 * a_reservations
+	 *
+	 * @return void
+	 */
+	function a_reservations()
+	{
+		checkallow(['client']);
+
+		$u = new Reservation();
+
+		$row = $u->emptyRecord();
+		$res_commandes = [];
+
+		extract($row);
+
+
+		require $this->gabarit;
+	}
+
+	/**
+	 * a_res_annuler
+	 *
+	 * @return void
+	 */
+	function a_res_annuler()
+	{
+	}
 }
