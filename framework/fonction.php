@@ -259,3 +259,44 @@ function matriceSqlCD(array $dimensionsTab, array $nomAxe, array $mysqlRecords):
 
 	return $tableauSqlCD;
 }
+
+
+/**
+ * calendrierHTML
+ *
+ * @param mixed $mois
+ * @param mixed $annee
+ * @return void Retourne un calendrier du mois désiré
+ */
+function calendrierHTML(int $mois, int $annee)
+{
+	$table = '';
+
+	$date = new Datetime("$annee-$mois-01");
+
+	$dayOfTheWeek = $date->format('w'); // day of the week of the first day of the month
+	$numberOfDaysInMonth = $date->format('t');
+	print($dayOfTheWeek);
+
+	$table .= '
+<table>
+    <tr>';
+	for ($day = 1; $day <= $dayOfTheWeek; $day++) {
+		$table .= "<td></td>";
+	}
+
+	for ($day = 1; $day < $numberOfDaysInMonth; $day++) {
+		$table .= "<td>$day</td>";
+		if ($day % 7 == 6) {
+			$table .= '</tr><tr>';
+			$dayOfTheWeek = 0;
+		}
+	}
+
+	for ($dow = $day % 7; $dow <= 6; $dow++) {
+		$table .= "<td></td>";
+	}
+
+	$table .= '</tr></table>';
+	return $table;
+}

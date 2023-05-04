@@ -50,7 +50,7 @@ class Ctr__default extends Ctr_controleur
      * La page va déterminer si il est possible pour lui d'obtenir un chambre qui 
      * est OK
      */
-    public function a_hotel_dispo()
+    public function a_hotel_chambres()
     {
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
             header('Location: ' . hlien('_default', 'hotel'));
@@ -60,8 +60,7 @@ class Ctr__default extends Ctr_controleur
         $a = new Hotel();
         $data = $a->select($_GET['id']);
 
-        debug($data);
-        exit();
+        extract($data);
 
         require $this->gabarit;
     }
