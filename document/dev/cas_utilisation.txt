@@ -29,7 +29,6 @@ ANONYME
 - Mettre des commentaires automatiques pour les classes et les fonctions
 - Lister les fonctions et les procédures
 
-
 * RESERVATION
 - Créer un appel ajax pour trouver la chambre en fonction de l'hôtel
 - Refaire fonctionner la création d'une réservation

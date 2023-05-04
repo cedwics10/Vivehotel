@@ -1,0 +1,4 @@
+- client :
+* creer_res
+* reservations
+* res_annuler
