@@ -115,7 +115,6 @@ class Ctr_client extends Ctr_controleur implements I_crud
 
 		extract($row);
 
-
 		require $this->gabarit;
 	}
 

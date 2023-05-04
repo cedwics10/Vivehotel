@@ -24,20 +24,10 @@ class Utilisateur extends Table
 
 	static public function selectByEmail(string $cli_email)
 	{
-		$sql = "SELECT cli_nom, cli_identifiant, cli_email, cli_mdp  FROM client WHERE cli_email=:mail";
+		$sql = "SELECT * FROM client WHERE cli_email=:mail";
 		$statement = self::$link->prepare($sql);
 		$statement->bindValue(":mail", $cli_email);
 		$statement->execute();
 		return $statement->fetch();
 	}
-
-
-
-
-
-
-
-
-
-
 }

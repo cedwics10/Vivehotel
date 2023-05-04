@@ -1,3 +1,7 @@
+- RESERVATION
+* Créer un appel AJAX pour lister les chambres disponibles
+
+
 - TELECONSEILLERS
 - Créer une requête qui indique si une chambre a déjà une réservation en cours 
 - Lister uniquement les chambres actives dans la partie téléconseiller

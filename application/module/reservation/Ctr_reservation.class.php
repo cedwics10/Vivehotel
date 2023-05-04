@@ -289,7 +289,7 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 
 	function a_ajax_chotel()
 	{
-		checkAllow(['admin', 'gestionnaire', 'teleconseiller']);
+		checkAllow(['admin', 'gestionnaire', 'teleconseiller', 'client']);
 		gestionnaireCheckHotel('hotel', $_GET);
 		$cha = new Chambre();
 		$listeChambresHotel = $cha->chaHotel($_GET['hotel']);
