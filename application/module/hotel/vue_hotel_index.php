@@ -23,7 +23,7 @@
 				<td><a class="btn btn btn-success" href="<?= hlien("chambre", "hotel", "id", $row["hot_id"]) ?>">Chambres</a></td>
 				<td><a class="btn btn btn-dark" href="<?= hlien("hotel", "statistiques", "id", $row["hot_id"]) ?>">Statistiques</a></td>
 				<td><a class="btn btn-info" href="<?= hlien("hotel", "services", "id", $row["hot_id"]) ?>">Services</a></td>
-				<td><a class=<td><a class="btn btn-warning" href="<?= hlien("hotel", "edit", "id", $row["hot_id"]) ?>">Modifier</a></td>
+				<td><a class="btn btn-warning" href="<?= hlien("hotel", "edit", "id", $row["hot_id"]) ?>">Modifier</a></td>
 				<td><a class="btn btn-danger" href="<?= hlien("hotel", "delete", "id", $row["hot_id"]) ?>">Supprimer</a></td>
 			</tr>
 		<?php } ?>

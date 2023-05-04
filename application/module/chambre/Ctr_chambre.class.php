@@ -258,4 +258,15 @@ class Ctr_chambre extends Ctr_controleur implements I_crud
 		$nbRes = $res->countRes($_GET['id']);
 		require $this->gabarit;
 	}
+
+	function a_ajax()
+	{
+		checkAllow([
+			'admin',
+			'client',
+			'gestionnaire',
+			'teleconseiller',
+		]);
+		$c = new Chambre();
+	}
 }

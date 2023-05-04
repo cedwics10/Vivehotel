@@ -1,6 +1,9 @@
 - RESERVATION
-* Créer un appel AJAX pour lister les chambres disponibles
-
+* La liste des hôtels est affiché dans la page "hotel_liste".
+* Une fois l'hôtel choisi, il choisit les dates pendant lesquelles il veut réserver une chambre
+* Un appel AJAX va indiquer si la possibilité de réserver entre les deux dates peut se faire. 
+* L'intervalle de dates séléctionnées sera coloré en vert ou en rouge
+*  L'utilisateur peut alors cliquer sur le choix de créneaux
 
 - TELECONSEILLERS
 - Créer une requête qui indique si une chambre a déjà une réservation en cours 

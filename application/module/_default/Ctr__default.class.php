@@ -27,6 +27,45 @@ class Ctr__default extends Ctr_controleur
         require $this->gabarit;
     }
 
+
+    /**
+     * a_hotel
+     *
+     * @return void Lance la page de la liste des hôtels disponible
+     * pour un utilisateur connecté
+     */
+    public function a_hotel()
+    {
+        $a = new Hotel();
+        $data = $a->selectActifs();
+        require $this->gabarit;
+    }
+
+    /**
+     * a_hotel
+     *
+     * @return void Lance la page qui affiche le calendrier des disponbilités
+     * de l'hôel
+     * L'utilisateur peut aussi indiquer des critères sur la chambre qu'il cherche
+     * La page va déterminer si il est possible pour lui d'obtenir un chambre qui 
+     * est OK
+     */
+    public function a_hotel_dispo()
+    {
+        if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: ' . hlien('_default', 'hotel'));
+            exit();
+        }
+
+        $a = new Hotel();
+        $data = $a->select($_GET['id']);
+
+        debug($data);
+        exit();
+
+        require $this->gabarit;
+    }
+
     /**
      * a_statistiques
      *

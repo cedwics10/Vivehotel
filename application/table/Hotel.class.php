@@ -64,6 +64,19 @@ class Hotel extends Table
 	}
 
 	/**
+	 * @return array Retourne les hôtels actifs
+	 */
+	public function selectActifs(): array
+	{
+		$sql = "SELECT * FROM hotel, hocategorie 
+		WHERE hot_hocategorie = hoc_id
+		AND hot_statut = 'Actif'
+		ORDER BY hot_id";
+		$result = self::$link->query($sql);
+		return $result->fetchAll();
+	}
+
+	/**
 	 * @param int $id : clé primaire d'un enregistrement d'un service
 	 * @return array Retourne un enregistreemnt du service ayant la clé primaire $id
 	 */
