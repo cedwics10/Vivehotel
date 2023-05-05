@@ -281,7 +281,7 @@ function calendrierHTML(int $mois, int $annee)
 	$numberOfRows = ceil(($dayOfTheWeek1st - 1 + $numberOfDaysInMonth) / 7);
 
 	$table .= '
-<table>
+<table class="calendrier">
 <thead>
 <th scope="col">Lu</th>
 <th scope="col">Ma</th>
@@ -298,7 +298,7 @@ function calendrierHTML(int $mois, int $annee)
 		$table .= '<tr>';
 		for ($col = 0; $col <= 6; $col++) {
 			$textNumber = (in_array($dayNumber, range(1, $numberOfDaysInMonth))) ? $dayNumber : '';
-			$table .= "<td data-day='{$textNumber}'>{$textNumber}</td>";
+			$table .= "<td><a data-day='{$textNumber}'>{$textNumber}</a></td>";
 			$dayNumber++;
 		}
 		$table .= '</tr>';

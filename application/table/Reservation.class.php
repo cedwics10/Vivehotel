@@ -30,6 +30,24 @@ class Reservation extends Table
 		parent::__construct("reservation", "res_id");
 	}
 
+	/**
+	 * retourne un tableau contenant le nom des champs de la table
+	 *
+	 * @return array
+	 */
+	function getFields(): array
+	{
+		$fields = [];
+		$sql = "SELECT column_name 
+		FROM `information_schema`.`columns` 
+		WHERE `table_schema` = 'vivehotel' and `table_name` in ('hotel', 'chcategorie', 'chambre', 'reservation')";
+		$result = self::$link->query($sql);
+		foreach ($result as $row)
+			$fields[] = $row["column_name"];
+
+		return $fields;
+	}
+
 
 	/**
 	 * selectAll
@@ -243,21 +261,28 @@ class Reservation extends Table
 		return $stmt->fetchColumn();
 	}
 
-	/**
-	 * retourne un tableau contenant le nom des champs de la table
-	 *
-	 * @return array
-	 */
-	function getFields(): array
+	public function chambresDisposDates(int $cha_hotel, string $date_debut, string $date_fin)
 	{
-		$fields = [];
-		$sql = "SELECT column_name 
-		FROM `information_schema`.`columns` 
-		WHERE `table_schema` = 'vivehotel' and `table_name` in ('hotel', 'chcategorie', 'chambre', 'reservation')";
-		$result = self::$link->query($sql);
-		foreach ($result as $row)
-			$fields[] = $row["column_name"];
+		$sql = "SELECT COUNT(cha_id) `chambres_disponibles`
+		FROM chambre
+		WHERE cha_statut = 'Actif'
+		AND cha_hotel = :hotel
+		AND cha_id NOT IN (SELECT DISTINCT res_chambre
+		FROM reservation
+		WHERE res_date_debut >= :date_debut 
+		AND res_date_fin <= :date_fin
+		AND res_etat != 'Annulé') chambre_prises
+		GROUP BY cha_id
+		";
 
-		return $fields;
+		$stmt = $this->link->prepare($sql);
+		$stmt->bindValue(':hotel', $cha_hotel, PDO::PARAM_INT);
+
+		$stmt->bindValue(':date_debut', $date_debut, PDO::PARAM_STR);
+		$stmt->bindValue(':date_fin', $date_fin, PDO::PARAM_STR);
+
+		$stmt->execute();
+		$result = $stmt->fetchColumn();
+		return $result;
 	}
 }
