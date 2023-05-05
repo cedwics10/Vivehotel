@@ -274,27 +274,34 @@ function calendrierHTML(int $mois, int $annee)
 
 	$date = new Datetime("$annee-$mois-01");
 
-	$dayOfTheWeek = $date->format('w'); // day of the week of the first day of the month
+	$dayOfTheWeek1st = $date->format('N'); // week's day of the first day of the month
 	$numberOfDaysInMonth = $date->format('t');
-	print($dayOfTheWeek);
+
+
+	$numberOfRows = ceil(($dayOfTheWeek1st - 1 + $numberOfDaysInMonth) / 7);
 
 	$table .= '
 <table>
+<thead>
+<th scope="col">Lu</th>
+<th scope="col">Ma</th>
+<th scope="col">Me</th>
+<th scope="col">Je</th>
+<th scope="col">Ve</th>
+<th scope="col">Sa</th>
+<th scope="col">Di</th>
+</tr>
+</thead>
     <tr>';
-	for ($day = 1; $day <= $dayOfTheWeek; $day++) {
-		$table .= "<td></td>";
-	}
-
-	for ($day = 1; $day < $numberOfDaysInMonth; $day++) {
-		$table .= "<td>$day</td>";
-		if ($day % 7 == 6) {
-			$table .= '</tr><tr>';
-			$dayOfTheWeek = 0;
+	$dayNumber = 2 - $dayOfTheWeek1st;
+	for ($row = 0; $row < $numberOfRows; $row++) {
+		$table .= '<tr>';
+		for ($col = 0; $col <= 6; $col++) {
+			$textNumber = (in_array($dayNumber, range(1, $numberOfDaysInMonth))) ? $dayNumber : '';
+			$table .= "<td data-day='{$textNumber}'>{$textNumber}</td>";
+			$dayNumber++;
 		}
-	}
-
-	for ($dow = $day % 7; $dow <= 6; $dow++) {
-		$table .= "<td></td>";
+		$table .= '</tr>';
 	}
 
 	$table .= '</tr></table>';

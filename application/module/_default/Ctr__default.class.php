@@ -50,7 +50,7 @@ class Ctr__default extends Ctr_controleur
      * La page va déterminer si il est possible pour lui d'obtenir un chambre qui 
      * est OK
      */
-    public function a_hotel_chambres()
+    public function a_hotel_dispo()
     {
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
             header('Location: ' . hlien('_default', 'hotel'));
