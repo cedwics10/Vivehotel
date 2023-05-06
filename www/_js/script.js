@@ -66,3 +66,7 @@ console.log(inputChambre);
     console.log(e.target);
 }) */
 /* Fin - appel AJAX pour numéro des chambres */
+
+/* Début - Evénemnt Javascript pour rechercher les chambres disponibles */
+
+/* Fin - Evénement Javascript pour rechercher les chambres disponibles */

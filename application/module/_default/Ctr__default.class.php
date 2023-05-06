@@ -57,6 +57,21 @@ class Ctr__default extends Ctr_controleur
             exit();
         }
 
+        if (
+            isset($_POST['date_debut'])
+            and isset($_POST['date_fin'])
+        ) {
+            $r = new Reservation();
+
+            debug($_POST);
+
+            $nombreChambreDispo = $r->chambresDisposDates(
+                $_GET['id'],
+                $_POST['date_debut'],
+                $_POST['date_fin']
+            );
+        }
+
         $a = new Hotel();
         $data = $a->select($_GET['id']);
 
@@ -80,5 +95,19 @@ class Ctr__default extends Ctr_controleur
         ];
 
         require $this->gabarit;
+    }
+
+    public function a_calendrier()
+    {
+        if (
+            !isset($_GET['mo'])
+            or !isset($_GET['an'])
+            or !is_numeric($_GET['mo'])
+            or !is_numeric($_GET['an'])
+        ) {
+            exit();
+        }
+
+        echo calendrierHTML($_GET['mo'], $_GET['an']);
     }
 }

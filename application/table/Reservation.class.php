@@ -271,11 +271,10 @@ class Reservation extends Table
 		FROM reservation
 		WHERE res_date_debut >= :date_debut 
 		AND res_date_fin <= :date_fin
-		AND res_etat != 'Annulé') chambre_prises
-		GROUP BY cha_id
+		AND res_etat != 'Annulé') 
 		";
 
-		$stmt = $this->link->prepare($sql);
+		$stmt = Table::$link->prepare($sql);
 		$stmt->bindValue(':hotel', $cha_hotel, PDO::PARAM_INT);
 
 		$stmt->bindValue(':date_debut', $date_debut, PDO::PARAM_STR);
