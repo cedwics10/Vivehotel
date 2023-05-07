@@ -23,7 +23,7 @@ class Ctr_authentification extends Ctr_controleur
     {
         extract($_POST);
         if (isset($_SESSION["cli_id"])) {
-            $_SESSION["message"][] = "Tentative d'intrusion détectée...";
+
             require $this->gabarit;
             exit;
         }
@@ -65,43 +65,43 @@ class Ctr_authentification extends Ctr_controleur
     public function a_connexion()
     {
         if (isset($_SESSION["cli_id"])) {
-            $_SESSION["message"][] = "Tentative d'intrusion détectée...";
             require $this->gabarit;
             exit;
         }
 
         extract($_POST);
-        if (isset($btSubmit)) {
-            //récupérer en bdd l'Utilisateur qui posséde $cli_email
-            $row = Utilisateur::selectByEmail($cli_email);
 
-            if ($row === false) {
-                $_SESSION["message"][] = "$cli_email n'existe pas. Vérifiez votre saisie";
-                require $this->gabarit;
-                exit;
-            }
-
-            //vérification du mot de passe
-            if (!password_verify($cli_mdp, $row["cli_mdp"])) {
-                $_SESSION["message"][] = "Mot de passe incorrect.";
-                require $this->gabarit;
-                exit;
-            }
-
-            //Connexion réussie
-            extract($row);
-            $_SESSION['cli_id'] = $cli_id;
-            $_SESSION['cli_nom'] = $cli_nom;
-            $_SESSION['cli_identifiant'] = $cli_identifiant;
-            $_SESSION['cli_email'] = $cli_email;
-            $_SESSION['cli_profil'] = $cli_profil;
-            $_SESSION['per_profil'] = 'client';
-            $_SESSION['message'][] = "Bienvenu $cli_identifiant $cli_nom.";
-            header("location:" . hlien("_default"));
-        } else {
+        if (!isset($btSubmit)) {
             $cli_email = "";
             require $this->gabarit;
+            exit();
         }
+        //récupérer en bdd l'Utilisateur qui posséde $cli_email
+        $row = Utilisateur::selectByEmail($cli_email);
+
+        if ($row === false) {
+            $_SESSION["message"][] = "Votre identifiant et/ou mot de passe est incorrect";
+            require $this->gabarit;
+            exit;
+        }
+
+        //vérification du mot de passe
+        if (!password_verify($cli_mdp, $row["cli_mdp"])) {
+            $_SESSION["message"][] = "Votre identifiant et/ou mot de passe est incorrect";
+            require $this->gabarit;
+            exit;
+        }
+
+        //Connexion réussie
+        extract($row);
+        $_SESSION['cli_id'] = $cli_id;
+        $_SESSION['cli_nom'] = $cli_nom;
+        $_SESSION['cli_identifiant'] = $cli_identifiant;
+        $_SESSION['cli_email'] = $cli_email;
+        $_SESSION['cli_profil'] = $cli_profil;
+        $_SESSION['per_profil'] = 'client';
+        $_SESSION['message'][] = "Bienvenu $cli_identifiant $cli_nom.";
+        header("location:" . hlien("_default"));
     }
 
     /**
@@ -126,37 +126,44 @@ class Ctr_authentification extends Ctr_controleur
         array_map('trim', $_POST);
 
         if (isset($_SESSION["per_id"])) {
-            $_SESSION["message"][] = "Tentative d'intrusion détectée...";
+
             require $this->gabarit;
             exit;
         }
 
         extract($_POST);
-        if (isset($btSubmit)) {
-            //récupérer en bdd le personnel  qui possède $per_email
-            $row = Personnel::selectByEmail($per_email);
 
-            if ($row === false) {
-                $_SESSION["message"][] = "$per_email n'existe pas. Vérifiez votre saisie";
-                require $this->gabarit;
-                exit;
-            }
-
-            extract($row);
-
-            $_SESSION["per_id"] = $per_id;
-            $_SESSION["per_nom"] = $per_nom;
-            $_SESSION["per_identifiant"] = $per_identifiant;
-            $_SESSION["per_email"] = $per_email;
-            $_SESSION["per_profil"] = $per_profil;
-            $_SESSION["per_role"] = $per_role;
-
-            $_SESSION["per_hotel"] = Personnel::selectHotel($per_id);
-            $_SESSION["message"][] = "bienvenu $per_nom.";
-            header("location:" . hlien("_default"));
-        } else {
+        if (!isset($btSubmit)) {
             $per_email = "";
             require $this->gabarit;
+            exit();
         }
+        //récupérer en bdd le personnel  qui possède $per_email
+        $row = Personnel::selectByEmail($per_email);
+
+        if ($row === false) {
+            $_SESSION["message"][] = "Votre identifiant et/ou mot de passe est incorrect";
+            require $this->gabarit;
+            exit();
+        }
+
+        extract($row);
+
+        if (!password_verify($_POST["per_mdp"], $per_mdp)) {
+            $_SESSION["message"][] = "Votre identifiant et/ou mot de passe est incorrect";
+            require $this->gabarit;
+            exit();
+        }
+
+        $_SESSION["per_id"] = $per_id;
+        $_SESSION["per_nom"] = $per_nom;
+        $_SESSION["per_identifiant"] = $per_identifiant;
+        $_SESSION["per_email"] = $per_email;
+        $_SESSION["per_profil"] = $per_profil;
+        $_SESSION["per_role"] = $per_role;
+
+        $_SESSION["per_hotel"] = Personnel::selectHotel($per_id);
+        $_SESSION["message"][] = "Bienvenu $per_nom.";
+        header("location:" . hlien("_default"));
     }
 }

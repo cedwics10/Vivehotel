@@ -140,6 +140,7 @@ function debug($t)
 	echo "<pre>";
 	print_r($t);
 	echo "</pre>";
+	exit();
 }
 
 // Crée un formulaire HTML pour rechercher les données de la table nommée "$className"
