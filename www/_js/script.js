@@ -1,5 +1,6 @@
 /* Début - Confirmer l'appui sur le bouton supprimer */
-boutonssSuppr = document.body.getElementsByClassName('btn-danger');
+let boutonssSuppr = document.body.getElementsByClassName('btn-danger');
+let tdEditablesTarifs = document.body.getElementsByClassName('tarif');
 
 Array.prototype.forEach.call(boutonssSuppr,
     function (item) {
@@ -28,8 +29,8 @@ async function infoTarif(e) { // callback
     let tdTarif = e.target;
     let tarPrix = tdTarif.innerHTML;
 
-    let hoc = tdTarif.getAttribute('data-hoc');
-    let chc = tdTarif.getAttribute('data-chc');
+    let hoc = tdTarif.dataset.hoc;
+    let chc = tdTarif.dataset.chc;
 
     editTerif(hoc, chc, tarPrix);
 
@@ -58,13 +59,6 @@ async function editTerif(hoc, chc, tarprix) {
 /* Fin - appel AJAX pour édition des tarifs */
 
 /* Début - appel AJAX pour numéro des chambres */
-let inputChambre = tdEditablesTarifs.addEventListener('change', (e) => {
-    console.log(e.target);
-})
-console.log(inputChambre);
-/* tdEditablesTarifs.addEventListener('change', (e) => {
-    console.log(e.target);
-}) */
 /* Fin - appel AJAX pour numéro des chambres */
 
 /* Début - Evénemnt Javascript pour rechercher les chambres disponibles */
