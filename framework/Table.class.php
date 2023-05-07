@@ -12,6 +12,8 @@ class Table
 	public string $table;
 	//Nom du champ clé primaire
 	public string $pk;
+	// classe générant des paginations
+	private Pagination $pagination;
 
 	/**
 	 * Constructeur
@@ -19,10 +21,19 @@ class Table
 	 * @param string $table        	
 	 * @param string $pk        	
 	 */
-	public function __construct(string $table, string $pk)
+	public function __construct(string $table, string $pk, int $NombreItemsParPage = 0)
 	{
 		$this->table = $table;
 		$this->pk = $pk;
+		$this->pagination = new Pagination();
+
+		$this->pagination->setNombreItemsParPage(
+			$NombreItemsParPage > 0 ? $NombreItemsParPage : 10
+		);
+
+		$this->pagination->setPage(
+			isset($_GET['page']) ? $_GET['page'] : 0
+		);
 	}
 
 	/**
