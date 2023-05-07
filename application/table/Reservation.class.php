@@ -67,8 +67,10 @@ class Reservation extends Table
 		AND res_chambre = cha_id
 		AND cha_hotel = hot_id
 		ORDER BY res_date_creation DESC
-		LIMIT 0,100';
+		' . $this->sqlPages();
+
 		$result = self::$link->query($sql);
+
 		return $result->fetchAll();
 	}
 

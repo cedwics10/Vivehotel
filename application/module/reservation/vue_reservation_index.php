@@ -1,6 +1,7 @@
     <h2>Liste des réservations (limité à 100 résultats)</h2>
 
     <p><a class="btn btn-primary" href="<?= hlien("reservation", "edit", "id", 0) ?>">Nouveau reservation</a></p>
+    <?= $pagination ?>
     <table class="table table-striped table-bordered table-hover">
     	<thead>
     		<tr>
@@ -35,3 +36,5 @@
     		<?php } ?>
     	</tbody>
     </table>
+
+    <?= $pagination ?>

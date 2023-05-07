@@ -12,8 +12,8 @@ class Table
 	public string $table;
 	//Nom du champ clé primaire
 	public string $pk;
-	// classe générant des paginations
-	private Pagination $pagination;
+	// Trait de pagination
+	use Pagination;
 
 	/**
 	 * Constructeur
@@ -21,19 +21,10 @@ class Table
 	 * @param string $table        	
 	 * @param string $pk        	
 	 */
-	public function __construct(string $table, string $pk, int $NombreItemsParPage = 0)
+	public function __construct(string $table, string $pk, int $NombreItemsParPage = 20)
 	{
 		$this->table = $table;
 		$this->pk = $pk;
-		$this->pagination = new Pagination();
-
-		$this->pagination->setNombreItemsParPage(
-			$NombreItemsParPage > 0 ? $NombreItemsParPage : 10
-		);
-
-		$this->pagination->setPage(
-			isset($_GET['page']) ? $_GET['page'] : 0
-		);
 	}
 
 	/**
@@ -46,6 +37,18 @@ class Table
 		$sql = "select * from $this->table";
 		$result = self::$link->query($sql);
 		return $result->fetchAll();
+	}
+
+	/**
+	 * countAll
+	 *
+	 * @return int Compte le nombre d'éléments de la table
+	 */
+	public function countAll(): int
+	{
+		$sql = "SELECT COUNT(*) `nb_entrees` from $this->table";
+		$result = self::$link->query($sql);
+		return $result->fetchColumn();
 	}
 
 	/**

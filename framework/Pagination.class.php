@@ -1,19 +1,18 @@
 <?php
-class Pagination
+trait Pagination
 {
     // Numéro de pagination
-    private int $pageActuelle;
+    protected int $pageActuelle;
     // Elements par page
-    private int $NombreItemsParPage;
+    protected int $NombreItemsParPage;
     // Nombre de pages
-    private int $nombrePages;
+    protected int $nombrePages;
     // Nombre de page visibles dans la pagination
-    private int $pagesVisibles = 10;
+    protected int $pagesVisibles = 10;
 
-    public function __construct(int $nombrePages, int $pageActuelle = 1, int $NombreItemsParPage = 20)
+    public function setParams(int $nombreElements, int $NombreItemsParPage = 20, int $pageActuelle = 1)
     {
-        if ($nombrePages > 1)
-            $this->nombrePages = $nombrePages;
+        $this->nombrePages = ceil($nombreElements / $NombreItemsParPage);
 
         $this->NombreItemsParPage = $NombreItemsParPage;
         $this->pageActuelle = $pageActuelle;
@@ -47,16 +46,9 @@ class Pagination
             $this->NombreItemsParPage = $NombreItemsParPage;
     }
 
-    public function queryPages()
-    {
-        $start = $this->NombreItemsParPage * ($this->pageActuelle - 1);
-
-        return "LIMIT {$start},{$this->NombreItemsParPage}";
-    }
-
     private function thereAreVeryFewPges()
     {
-        $this->nombrePages < $this->pagesVisibles;
+        return $this->nombrePages < $this->pagesVisibles;
     }
 
     private function arrayAtFirstPages()
@@ -64,7 +56,7 @@ class Pagination
         echo 'début';
         $page_range = range(1, $this->nombrePages);
         return array_merge(
-            array_slice($page_range, 0, floor($this->pagesVisibles / 2)),
+            array_slice($page_range, 0, $this->pagesVisibles),
             ['...'],
             array_slice($page_range, $this->nombrePages - floor($this->pagesVisibles / 2), floor($this->pagesVisibles / 2))
         );
@@ -101,16 +93,16 @@ class Pagination
 
     private function currentPageInBeginning()
     {
-        $this->pageActuelle < $this->pagesVisibles;
+        return $this->pageActuelle < $this->pagesVisibles;
     }
 
     private function currentPageInTheEnd()
     {
-        $this->pageActuelle >= $this->nombrePages - $this->pagesVisibles / 2;
+        return $this->pageActuelle >= $this->nombrePages - $this->pagesVisibles / 2;
     }
 
 
-    public function arrayPages()
+    private function arrayPages()
     {
         if ($this->nombrePages == 1)
             return [];
@@ -128,5 +120,30 @@ class Pagination
         }
 
         return $this->arrayInMiddlePages();
+    }
+
+    public function htmlPages($baseName = '')
+    {
+        $HTML = [];
+        $arrayPages = $this->arrayPages();
+
+        $key = 0;
+
+        foreach ($arrayPages as $page) {
+            $texte = $page;
+            if ($page == '...')
+                $page = round(($arrayPages[$key + 1] + $arrayPages[$key - 1]) / 2);
+            $HTML[] = "<a style='text-decoration: none;' href='{$baseName}&page=$page'>$texte</a>";
+            $key++;
+        }
+
+        return implode(' ', $HTML);
+    }
+
+    public function sqlPages()
+    {
+        $start = $this->NombreItemsParPage * ($this->pageActuelle - 1);
+
+        return "LIMIT {$start},{$this->NombreItemsParPage}";
     }
 }

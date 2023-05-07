@@ -30,7 +30,13 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		}
 
 		$u = new Reservation();
+		$nbReservations = $u->countAll();
+		$page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$u->setParams($nbReservations, 20, $page);
+
 		$data = $u->selectAll();
+
+		$pagination = $u->htmlPages(hlien('reservation', 'index'));
 
 		require $this->gabarit;
 	}
@@ -84,7 +90,6 @@ class Ctr_reservation extends Ctr_controleur implements I_crud
 		gestionnaireCheckHotel('res_hotel', $row);
 
 		extract($row);
-
 
 		require $this->gabarit;
 	}
