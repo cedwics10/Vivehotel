@@ -53,7 +53,6 @@ trait Pagination
 
     private function arrayAtFirstPages()
     {
-        echo 'début';
         $page_range = range(1, $this->nombrePages);
         return array_merge(
             array_slice($page_range, 0, $this->pagesVisibles),
@@ -77,7 +76,6 @@ trait Pagination
         $page_range = range(1, $this->nombrePages);
         $halfVisiblePages = floor($this->pagesVisibles / 2);
         $startPage = $this->pageActuelle - $halfVisiblePages - 1;
-        echo '4';
 
         return array_merge(
             [1, '...'],
@@ -133,7 +131,7 @@ trait Pagination
             $texte = $page;
             if ($page == '...')
                 $page = round(($arrayPages[$key + 1] + $arrayPages[$key - 1]) / 2);
-            $HTML[] = "<a style='text-decoration: none;' href='{$baseName}&page=$page'>$texte</a>";
+            $HTML[] = "<a href='{$baseName}&page=$page'>$texte</a>";
             $key++;
         }
 
