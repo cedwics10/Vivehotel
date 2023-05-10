@@ -1,31 +1,43 @@
-- RESERVATION
+- Réserver une nouvelle chambre quand on est un client
 * Les chambres disponibles dans les dates que veut l'utilisateur seront listées dans 
 la page
-* L'utilisateur pourra choisir de réserver une chambre
-* Tous les parampètres seront isncrits dans un formulaire de confirmation
+* L'utilisateur pourra choisir de lister l'ensemble des chambres disponibles :
+- Selon des dates
+- Selon des critères
+* Tous les paramètres seront isncrits dans un formulaire de confirmation
 * L'utilisateur pourra procéder au paiement sur cette page
 * Une fois confirmé, la réservation est ajoutée dans la liste des réservations du cleint
 
-- TELECONSEILLERS
+- Gérer le site en tant que téléconseriller 
 - Créer une requête qui indique si une chambre a déjà une réservation en cours 
 - Lister uniquement les chambres actives dans la partie téléconseiller
 - Remplacer le statut de la chambre par une indication sur sa disponibilité
 
-- Gérer les réservations pour tout hôtel. (tester)
-
 ANONYME
-- Faire une recherche selon différents critères : géographique, catégorie d’hôtel, type de service.
+- Faire une recherche selon différents critères : 
+- géographique
+- catégorie d’hôtel
+- type de service.
 
-- Consulter la liste des hôtels, leurs descriptifS, leurs services
+
+- Consulter la liste :!
+* des hôtels
+* leurs descriptifS
+* leurs services
 - Consulter les différentes catégories de chambres d’un hôtel
 - Consulter les chambres avec leurs descriptifs et leurs tarifs
 
-- Etudier la possibilité d’afficher sur une carte de france les hôtels (prévoir les propriétés « longitude » et « latitude »).
+- Trouver une API gratuite de GPS de la liste des hôtels
+- Afficher l'ensemble des chambres dans le GPS
+
 
 * Dataset
-
+- Modifeir l'étendue des longitudes et latitudes dans le dataset pour qu'elles correspondent
+à des adresses de villes Françaises de vrais hôtels
 
 * ALL
+- Créer une classe qui permet de faire les formulaires interactifs pour
+les utilisaeturs du site
 - Créer un fichier de constantes pour le site
 - Assurer la sécurité des formulaires face  la faille de la méthode "save" avec $_PÖST.
 
@@ -45,27 +57,16 @@ ANONYME
 - Avoir une fonction javascript H-lien
 
 * DOSSIER TECHNIQUE :
-- Relire le dossier technique
-- Relire le document utilisateur
 - Mettre à jour le dossier technique
 - Mettre à jour le dossier utilsiateur 
 
 
 
-- CLIENTS
-- Créer les pages des cleints
 
-
-- Tester le site intenret en entier (tests unitaires et interface)
+- Acheter un cours Udemy sur les tests unitaires et le regarder
+- Créer des tests unitaires quand nécessaires
 - Commenter les actions des contrôleurs pour plus de clarté 
 - Supprimer les dossiers et fichiers qui n'ont aucun sens en tant que module MVC.
 
-
-* important non urgent :
-- Créer une classe qui permet de faire les formulaires interactifs pour
-les utilisaeturs du site
-- Créer un GPS qui donne la latitude et longitude (optionnel, à voir en
-dernier) [?]
-- Créer un GPS sur le pied de page [C]
-- Créer une pagination sur le CRUD de la liste des clambres [C]
+- Créer une pagination sur le CRUD de la liste des clambres 
 
