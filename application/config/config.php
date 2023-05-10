@@ -22,6 +22,7 @@ define("DB_PREFIXE_LENGTH", 3);
 //chargement des classes de base du framework
 require "../framework/fonction.php";
 require "../framework/Pagination.class.php";
+require "../framework/Recherche.class.php";
 require "../framework/Table.class.php";
 require "../framework/I_crud.class.php";
 require "../framework/Ctr_controleur.class.php";

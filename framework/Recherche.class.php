@@ -1,12 +1,15 @@
 <?php
-trait Recherche
+class Recherche
 {
     /**
      * inputs
      *
      * @var array
      */
-    protected $inputs = [];
+    protected array $inputs = [];
+    protected array $names = [];
+    protected string $action = '';
+    protected string $method = '';
 
     /**
      * fields
@@ -38,13 +41,13 @@ trait Recherche
         string $strLabel,
         string $strValue
     ) {
-        $inputs = [
-            'label' => $strLabel,
+        $this->inputs[] = [
             'name' => $strName,
-            'type' => 'checkbox',
+            'label' => $strLabel,
+            'type' => 'text',
             'value' => $strValue
         ];
-        $this->input[$strLabel] = '';
+        $this->names[$strLabel] = '';
     }
 
 
@@ -58,15 +61,19 @@ trait Recherche
      * @param  mixed $type
      * @return void
      */
-    public function ajouterInputGroup(string $strName, array $arrayLabel, array $arrayValue, string $type = 'checkbox')
-    {
+    public function ajouterInputGroup(
+        string $strName,
+        array $arrayLabel,
+        array $arrayValue,
+        string $type = 'checkbox'
+    ) {
         if (count($arrayLabel) != count($arrayValue))
             trigger_error("Il n'y a pas autant de label que de valeurs dans la liste des checkboxs à ajouter.", E_USER_ERROR);
 
         $idValue = 0;
         foreach ($arrayLabel as $label) {
             $this->inputs[] = [
-                '' => '',
+                'name' => $strName,
                 'label' => $label,
                 'type' => 'checkbox',
                 'value' => $arrayValue[$idValue],
@@ -74,7 +81,7 @@ trait Recherche
             $idValue++;
         }
 
-        $this->input[$strName] = '';
+        $this->names[$strName] = '';
     }
 
 
@@ -123,11 +130,25 @@ trait Recherche
      */
     public function returnSqlFields(): array
     {
-        return array_intersect_key($_POST, $this->input);
+        return array_intersect_key($_POST, $this->inputs);
     }
 
-    public function htmlForm(): string
+
+    private function generateText()
     {
-        return '<form>';
+    }
+
+    /**
+     * htmlForm
+     *
+     * @return void
+     */
+    public function htmlForm()
+    {
+        $text = '';
+        foreach ($this->inputs as $input) {
+            $function = 'generate' . ucfirst($input['type']);
+            $function();
+        }
     }
 }

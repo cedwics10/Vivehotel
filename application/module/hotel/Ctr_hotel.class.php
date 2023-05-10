@@ -172,11 +172,6 @@ class Ctr_hotel extends Ctr_controleur implements I_crud
 		}
 
 
-		gestionnaireCheckHotel(
-			'id',
-			$_GET,
-			hlien('chambre', 'hotel', 'id', $_SESSION['per_hotel'])
-		);
 
 		$hotel = new Hotel();
 		$data = (isset($_GET['id'])) ? $hotel->select($_GET['id']) : [];
@@ -186,6 +181,12 @@ class Ctr_hotel extends Ctr_controleur implements I_crud
 			header('Location: ' . hlien('hotel', 'index'));
 			exit();
 		}
+
+		gestionnaireCheckHotel(
+			'id',
+			$_GET,
+			hlien('chambre', 'hotel', 'id', $data['hot_id'])
+		);
 
 		$chiffreA = $hotel->chiffreAffaire($_GET['id']);
 		$caSservices = $hotel->CAservices($_GET['id']);
