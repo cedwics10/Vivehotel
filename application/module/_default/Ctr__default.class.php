@@ -50,9 +50,18 @@ class Ctr__default extends Ctr_controleur
      * La page va déterminer si il est possible pour lui d'obtenir un chambre qui 
      * est OK
      */
-    public function a_hotel_dispo()
+    public function a_chambre_dispo()
     {
         if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+            header('Location: ' . hlien('_default', 'hotel'));
+            exit();
+        }
+
+        $h = new Hotel();
+        $dataHotel = $h->select($_GET['id']);
+
+        if (count($dataHotel) == 0) {
+            $_SESSION['message'][] = 'Cet hôtel n\'existe pas';
             header('Location: ' . hlien('_default', 'hotel'));
             exit();
         }
@@ -63,14 +72,18 @@ class Ctr__default extends Ctr_controleur
         ) {
             $r = new Reservation();
 
-            debug($_POST);
-
             $nombreChambreDispo = $r->chambresDisposDates(
                 $_GET['id'],
                 $_POST['date_debut'],
                 $_POST['date_fin']
             );
         }
+
+        if (isset($nombreChambreDispo) and $nombreChambreDispo > 0) {
+            $dateDebut = str_replace('-', '', $_POST['date_debut']);
+            $dateFin = str_replace('-', '', $_POST['date_fin']);
+        }
+
 
         $a = new Hotel();
         $data = $a->select($_GET['id']);
@@ -109,5 +122,39 @@ class Ctr__default extends Ctr_controleur
         }
 
         echo calendrierHTML($_GET['mo'], $_GET['an']);
+    }
+
+
+    /**
+     * a_edit
+     *
+     * @return void Page de réservation d'une chambre
+     */
+    function a_reserver_chambre()
+    {
+        checkAllow(['admin', 'gestionnaire']);
+
+        if (!isset($_GET['hotel']) or !is_numeric($_GET['hotel'])) {
+            $_SESSION['message'][] = 'Lien invalide';
+            header('Location: ' . hlien('_default', 'index'));
+            exit();
+        }
+
+        $u = new Chambre();
+        $row = $u->select($_GET['hotel']);
+        if (count($row) == 0) {
+            $_SESSION['message'][] = 'Lien invalide';
+            header('Location: ' . hlien('_default', 'index'));
+            exit();
+        }
+        extract($row);
+
+        require $this->gabarit;
+    }
+
+    function a_payer_chambre()
+    {
+
+        require $this->gabarit;
     }
 }

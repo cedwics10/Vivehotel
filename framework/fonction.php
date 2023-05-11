@@ -93,27 +93,30 @@ function checkAuth()
 }
 
 //si user non authentifié redirection vers index
-function checkAllow(string|array $profil)
+function checkAllow(string|array $arrayProfilAutorises)
 {
 	checkAuth();
 
-	if (is_string($profil)) {
-		$profil = [$profil];
+	if (is_string($arrayProfilAutorises)) {
+		$arrayProfilAutorises = [$arrayProfilAutorises];
 	}
 
 	if (
 		isset($_SESION['cli_id'])
-		and in_array($_SESSION['per_profil'], $profil)
+		and in_array($_SESSION['per_profil'], $arrayProfilAutorises)
 	) {
 		return true;
 	}
 
 	if (
 		isset($_SESSION["per_role"])
-		and !in_array($_SESSION['per_role'], $profil)
+		and !in_array($_SESSION['per_role'], $arrayProfilAutorises)
 	) {
 		$_SESSION["message"][] = "Cette page n'existe pas.";
-		header("location:" . hlien("_default"));
+		$lienRedirection = hlien("_default");
+		if (in_array('client', $arrayProfilAutorises))
+			$lienRedirection = hlien('authentification', 'connexion');
+		header("location: " . $lienRedirection);
 		exit();
 	}
 }
