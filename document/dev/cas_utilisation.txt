@@ -1,12 +1,8 @@
 - Réserver une nouvelle chambre quand on est un client
-* L'utilisateur sélectionne un hôtel
-* Il tape les dates entre lesquelles il veut réserver sa chambre
-* Le nombre de chambres disponible est indiqué : si c'est supérieur à 1,
-il peut réserver une chambre de l'hôtel.
+* Une fois que l'utilisateur valide, une chambre lui est proposé.
+Il aura des données sur la chambre et ira choisir de payer ou non.
 * Il va sur une page de paiement. Lorsqu'il a payé, une nouvelle
 réservation est mise en statut "Initialisé"
-
-
 
 - Gérer le site en tant que téléconseriller 
 - Créer une requête qui indique si une chambre a déjà une réservation en cours 
