@@ -157,4 +157,19 @@ class Ctr__default extends Ctr_controleur
 
         require $this->gabarit;
     }
+
+    /**
+     * a_reservations
+     *
+     * @return void Réservation d'un client connecté
+     */
+    function a_reservations()
+    {
+        CheckAuth();
+        CheckAllow(['client']);
+
+        $r = new Reservation();
+        $data = $r->reservationsClient($_SESSION['cli_id']);
+        require $this->gabarit;
+    }
 }

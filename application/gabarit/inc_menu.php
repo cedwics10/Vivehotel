@@ -27,6 +27,7 @@
           <li><a class="nav-link" href="<?= hlien("hotel", "statistiques", "id", $_SESSION['per_hotel']) ?>">Statistiques</a></li>
         <?php } else if (isset($_SESSION['per_profil']) and $_SESSION['per_profil'] == 'client') { ?>
           <li><a class='nav-link' href='<?= hlien("_default", "hotel")  ?>'>Hôtels</a></li>
+          <li><a class='nav-link' href='<?= hlien("_default", "reservations")  ?>'>Réservations</a></li>
         <?php } ?>
       </ul>
       <ul class="navbar-nav ml-auto">

@@ -1,8 +1,16 @@
 - Réserver une nouvelle chambre quand on est un client
-* Une fois que l'utilisateur valide, une chambre lui est proposé.
+* Trouver un module qui permet de sélectionner une date de début et une date de dateFin
+* Une fois que l'utilisateur valide, une chambre lui est proposé. Vérifier que
+les dates que veulent l'utilisateur soit cohérentes
 Il aura des données sur la chambre et ira choisir de payer ou non.
 * Il va sur une page de paiement. Lorsqu'il a payé, une nouvelle
 réservation est mise en statut "Initialisé"
+
+ - Voir ses réservation quand on est client
+* Reprendre la vue réservation client de 'l'admin
+* Créer une page perso en fonction du client
+* 
+
 
 - Gérer le site en tant que téléconseriller 
 - Créer une requête qui indique si une chambre a déjà une réservation en cours 
